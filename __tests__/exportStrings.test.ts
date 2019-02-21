@@ -1,6 +1,6 @@
 import { exportStrings } from "@src/main";
+import { getTmpPath, readFileFromTmp } from "__helpers__/fs";
 import * as fse from "fs-extra";
-import * as os from "os";
 import * as path from "path";
 
 beforeAll(() => {
@@ -42,13 +42,3 @@ it("Should update .po files with new translations", async () => {
     expect(readFileFromTmp(tmpPath, locale)).toMatchSnapshot(locale);
   }
 });
-
-const readFileFromTmp = (tmpPath: string, filePath: string) => {
-  return fse.readFileSync(path.join(tmpPath, filePath)).toString();
-};
-
-const getTmpPath = async () => {
-  const exportFolder = path.join(os.tmpdir(), `lioness-utils`);
-  await fse.remove(exportFolder);
-  return exportFolder;
-};
