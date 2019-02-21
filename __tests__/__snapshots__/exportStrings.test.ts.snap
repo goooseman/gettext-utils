@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should export correct strings from .tsx files: template.pot 1`] = `
+"msgid \\"\\"
+msgstr \\"\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt \\"lion.sound\\"
+msgid \\"Rrrrr\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt \\"lion.females\\"
+msgid \\"one female lion\\"
+msgid_plural \\"{{ count }} female lions\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+msgctxt \\"lion.title\\"
+msgid \\"Lion\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+msgctxt \\"lion.children\\"
+msgid \\"Lion has one child\\"
+msgid_plural \\"Lion has {{ count }} children\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\""
+`;
+
+exports[`Should overwrite template.pot: template.pot 1`] = `
+"msgid \\"\\"
+msgstr \\"\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt \\"lion.sound\\"
+msgid \\"Rrrrr\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt \\"lion.females\\"
+msgid \\"one female lion\\"
+msgid_plural \\"{{ count }} female lions\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+msgctxt \\"lion.title\\"
+msgid \\"Lion\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+msgctxt \\"lion.children\\"
+msgid \\"Lion has one child\\"
+msgid_plural \\"Lion has {{ count }} children\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\""
+`;
+
+exports[`Should update .po files with new translations: fr.po 1`] = `
+"msgid \\"\\"
+msgstr \\"\\"
+\\"Content-Type: text/plain; charset=UTF-8\\\\n\\"
+\\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"Plural-Forms: nplurals=2; plural=(n > 1);\\\\n\\"
+\\"Project-Id-Version: \\\\n\\"
+\\"PO-Revision-Date: \\\\n\\"
+\\"Language-Team: \\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"X-Generator: Poedit 2.2.1\\\\n\\"
+\\"Last-Translator: \\\\n\\"
+\\"Language: fr\\\\n\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt \\"lion.sound\\"
+msgid \\"Rrrrr\\"
+msgstr \\"Oooo\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+msgctxt \\"lion.title\\"
+msgid \\"Lion\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+msgctxt \\"lion.children\\"
+msgid \\"Lion has one child\\"
+msgid_plural \\"Lion has {{ count }} children\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt \\"lion.females\\"
+msgid \\"one female lion\\"
+msgid_plural \\"{{ count }} female lions\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+"
+`;
+
+exports[`Should update .po files with new translations: he.po 1`] = `
+"msgid \\"\\"
+msgstr \\"\\"
+\\"Content-Type: text/plain; charset=UTF-8\\\\n\\"
+\\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);\\\\n\\"
+\\"Project-Id-Version: \\\\n\\"
+\\"PO-Revision-Date: \\\\n\\"
+\\"Language-Team: \\\\n\\"
+\\"MIME-Version: 1.0\\\\n\\"
+\\"X-Generator: Poedit 2.2.1\\\\n\\"
+\\"Last-Translator: \\\\n\\"
+\\"Language: he\\\\n\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt \\"lion.sound\\"
+msgid \\"Rrrrr\\"
+msgstr \\"רררר\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+msgctxt \\"lion.title\\"
+msgid \\"Lion\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+msgctxt \\"lion.children\\"
+msgid \\"Lion has one child\\"
+msgid_plural \\"Lion has {{ count }} children\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt \\"lion.females\\"
+msgid \\"one female lion\\"
+msgid_plural \\"{{ count }} female lions\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+"
+`;
