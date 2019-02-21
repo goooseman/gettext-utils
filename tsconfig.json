@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "sourceMap": true,
+    "strict": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"]
+    },
+    "typeRoots": ["node_modules/@types", "./definitions"]
+  },
+  "include": ["definitions/**/*.d.ts", "src/**/*", "__tests__/**/*"]
+}
