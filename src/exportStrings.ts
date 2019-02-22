@@ -4,7 +4,7 @@ import * as path from "path";
 import { mergePotContents } from "pot-merge";
 import { parseGlob } from "react-gettext-parser";
 import { promisify } from "util";
-import lionessConfig from "./lioness.config";
+import lionessConfig from "./config/lioness.config";
 
 const parseGlobPromisified = promisify(parseGlob);
 const encoding = "utf-8";

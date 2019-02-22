@@ -8,14 +8,24 @@ beforeAll(() => {
 });
 
 const templateName = "template.pot";
+const msgIdsToCheck = [
+  /msgctxt "lion\.females"/,
+  /msgctxt "lion\.children"/,
+  /msgctxt "lion\.title"/,
+  /msgctxt "lion\.sound"/,
+];
 
-it("Should export correct strings from .tsx files", async () => {
+it("Should export correct strings from .jsx and .tsx files", async () => {
   const tmpPath = await getTmpPath();
   await exportStrings(
     tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
   );
-  expect(readFileFromTmp(tmpPath, templateName)).toMatchSnapshot(templateName);
+  const result = readFileFromTmp(tmpPath, templateName);
+  expect(result).toMatchSnapshot(templateName);
+  for (const msgIdToCheck of msgIdsToCheck) {
+    expect(result).toMatch(msgIdToCheck);
+  }
 });
 
 it("Should overwrite template.pot", async () => {
@@ -26,7 +36,9 @@ it("Should overwrite template.pot", async () => {
     tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
   );
-  expect(readFileFromTmp(tmpPath, templateName)).toMatchSnapshot(templateName);
+  const result = readFileFromTmp(tmpPath, templateName);
+  expect(result).toMatchSnapshot(templateName);
+  expect(result).toMatch(/msgctxt "lion\.females"/);
 });
 
 it("Should update .po files with new translations", async () => {
@@ -36,9 +48,14 @@ it("Should update .po files with new translations", async () => {
     tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
   );
-  const locales = ["fr.po", "he.po"];
+  const locales = ["fr.po", "he.po", "ru.po"];
 
   for (const locale of locales) {
-    expect(readFileFromTmp(tmpPath, locale)).toMatchSnapshot(locale);
+    const result = readFileFromTmp(tmpPath, locale);
+    expect(result).toMatch(/msgctxt "lion\.sound"\n.+\nmsgstr "[^"]/gm);
+    for (const msgIdToCheck of msgIdsToCheck) {
+      expect(result).toMatch(msgIdToCheck);
+    }
+    expect(result).toMatchSnapshot(locale);
   }
 });
