@@ -16,6 +16,7 @@ const updateLocale = async (templatePath: string, localeFilePath: string) => {
   await writeFile(localeFilePath, updatedLocaleData);
 };
 
+// TODO change params order
 const exportStrings = async (outputPath: string, inputFilesGlob: string) => {
   await mkdirp(outputPath);
   const templateOutputPath = path.join(outputPath, "template.pot");

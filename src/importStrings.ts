@@ -9,11 +9,11 @@ export const getPoParsed = async (pathToPo: string) => {
 };
 
 export const getTranslations = async (poFilesPath: string) => {
-  const poFilePaths = glob.sync(path.join(poFilesPath, "*.po"));
+  const poFilesPaths = glob.sync(path.join(poFilesPath, "*.po"));
   const translations: {
     [locale: string]: Translation;
   } = {};
-  for (const poFilePath of poFilePaths) {
+  for (const poFilePath of poFilesPaths) {
     const locale = path.basename(poFilePath, path.extname(poFilePath));
     translations[locale] = await getPoParsed(poFilePath);
   }

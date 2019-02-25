@@ -2,7 +2,7 @@
   "name": "lioness-utils",
   "version": "0.0.1",
   "description": "A set of utils to parse react files and export .po files and import them back",
-  "cli": "src/cli.js",
+  "bin": "src/cli.js",
   "main": "src/main.js",
   "engines": {
     "node": "~10.14.0",
@@ -26,7 +26,7 @@
     "test:ci": "jest --detectOpenHandles --coverage",
     "clean": "rimraf '{src,__tests__}/**/*.js?(x)?(.map)'",
     "release": "./extra/deployment/release.sh",
-    "prepublish": "npm run build:clean"
+    "prepare": "npm run build:clean"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "@material-ui/core": "^3.9.2",
     "@types/fs-extra": "^5.0.5",
     "@types/jest": "^23.3.13",
+    "@types/yargs": "^12.0.9",
     "concurrently": "^4.1.0",
     "jest": "^23.6.0",
     "lioness": "^0.2.13",
@@ -74,6 +75,7 @@
     "module-alias": "^2.1.0",
     "pot-merge": "^2.2.0",
     "react-gettext-parser": "^1.8.2",
-    "typescript": "^3.3.1"
+    "typescript": "^3.3.1",
+    "yargs": "^13.2.1"
   }
 }
