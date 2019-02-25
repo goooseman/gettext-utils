@@ -20,13 +20,13 @@ export const getTranslations = async (poFilesPath: string) => {
   return translations;
 };
 
-const importStrings = async (poFilesDirPath: string, outputDirPath: string) => {
+const importStrings = async (
+  poFilesDirPath: string,
+  outputFilePath: string,
+) => {
   const translations = await getTranslations(poFilesDirPath);
-  await fse.mkdirp(outputDirPath);
-  await fse.writeFile(
-    path.join(outputDirPath, "translations.json"),
-    JSON.stringify(translations),
-  );
+  await fse.mkdirp(path.dirname(outputFilePath));
+  await fse.writeFile(outputFilePath, JSON.stringify(translations));
 };
 
 export default importStrings;

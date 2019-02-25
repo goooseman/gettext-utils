@@ -1,11 +1,14 @@
 import { importStrings } from "@src/main";
-import { getTmpPath, readFileFromTmp } from "__helpers__/fs";
+import { getTmpPath } from "__helpers__/fs";
+import * as fse from "fs-extra";
+import * as path from "path";
 
 it("should generate node-gettext .json files from .po files", async () => {
   const tmpPath = await getTmpPath();
-  await importStrings("__fixtures__/po", tmpPath);
+  const filePath = path.join(tmpPath, "translations.json");
+  await importStrings("__fixtures__/po", filePath);
 
-  const file = JSON.parse(readFileFromTmp(tmpPath, "translations.json"));
+  const file = JSON.parse(fse.readFileSync(filePath, "utf-8"));
   expect(file).toMatchSnapshot();
   const localesToCheck = ["he", "fr", "ru"];
   for (const localeToCheck of localesToCheck) {

@@ -41,8 +41,8 @@ yargs
           default: "./src/i18n/",
         })
         .positional("outputPath", {
-          describe: "Path to output translations.json file",
-          default: "./src/i18n/",
+          describe: "Path to output .json file",
+          default: "./src/i18n/translations.json",
         });
     },
     ({
