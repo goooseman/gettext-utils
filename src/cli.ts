@@ -18,7 +18,7 @@ yargs
         })
         .positional("outputPath", {
           describe: "Path to output .pot file",
-          default: "./src/i18n/",
+          default: "./src/i18n/template.pot",
         });
     },
     ({

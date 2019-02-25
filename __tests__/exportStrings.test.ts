@@ -1,5 +1,5 @@
 import { exportStrings } from "@src/main";
-import { getTmpPath, readFileFromTmp } from "__helpers__/fs";
+import { getTmpPath } from "__helpers__/fs";
 import * as fse from "fs-extra";
 import * as path from "path";
 
@@ -8,6 +8,7 @@ beforeAll(() => {
 });
 
 const templateName = "template.pot";
+const encoding = "utf-8";
 const msgIdsToCheck = [
   /msgctxt "lion\.females"/,
   /msgctxt "lion\.children"/,
@@ -17,11 +18,12 @@ const msgIdsToCheck = [
 
 it("Should export correct strings from .jsx and .tsx files", async () => {
   const tmpPath = await getTmpPath();
+  const filePath = path.join(tmpPath, templateName);
   await exportStrings(
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
-    tmpPath,
+    filePath,
   );
-  const result = readFileFromTmp(tmpPath, templateName);
+  const result = await fse.readFile(filePath, encoding);
   expect(result).toMatchSnapshot(templateName);
   for (const msgIdToCheck of msgIdsToCheck) {
     expect(result).toMatch(msgIdToCheck);
@@ -34,9 +36,9 @@ it("Should overwrite template.pot", async () => {
   await fse.createFile(filePath);
   await exportStrings(
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
-    tmpPath,
+    filePath,
   );
-  const result = readFileFromTmp(tmpPath, templateName);
+  const result = await fse.readFile(filePath, encoding);
   expect(result).toMatchSnapshot(templateName);
   expect(result).toMatch(/msgctxt "lion\.females"/);
 });
@@ -44,14 +46,16 @@ it("Should overwrite template.pot", async () => {
 it("Should update .po files with new translations", async () => {
   const tmpPath = await getTmpPath();
   await fse.copy("__fixtures__/po", tmpPath);
+  const filePath = path.join(tmpPath, templateName);
   await exportStrings(
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
-    tmpPath,
+    filePath,
   );
   const locales = ["fr.po", "he.po", "ru.po"];
 
   for (const locale of locales) {
-    const result = readFileFromTmp(tmpPath, locale);
+    const localeFilePath = path.join(tmpPath, locale);
+    const result = await fse.readFile(localeFilePath, encoding);
     expect(result).toMatch(/msgctxt "lion\.sound"\n.+\nmsgstr "[^"]/gm);
     for (const msgIdToCheck of msgIdsToCheck) {
       expect(result).toMatch(msgIdToCheck);

@@ -9,23 +9,29 @@ import lionessConfig from "./config/lioness.config";
 const parseGlobPromisified = promisify(parseGlob);
 const encoding = "utf-8";
 
-const updateLocale = async (templatePath: string, localeFilePath: string) => {
-  const template = await readFile(templatePath, encoding);
+const updateLocale = async (
+  templateFilePath: string,
+  localeFilePath: string,
+) => {
+  const template = await readFile(templateFilePath, encoding);
   const localeFile = await readFile(localeFilePath, encoding);
   const updatedLocaleData = mergePotContents(localeFile, template);
   await writeFile(localeFilePath, updatedLocaleData);
 };
 
-const exportStrings = async (inputFilesGlob: string, outputDirPath: string) => {
-  await mkdirp(outputDirPath);
-  const templateOutputPath = path.join(outputDirPath, "template.pot");
+const exportStrings = async (
+  inputFilesGlob: string,
+  templateFilePath: string,
+) => {
+  const templateDirPath = path.dirname(templateFilePath);
+  await mkdirp(templateDirPath);
   await parseGlobPromisified([inputFilesGlob], {
-    output: templateOutputPath,
+    output: templateFilePath,
     ...lionessConfig,
   });
-  const poFilesToUpdate = glob.sync(path.join(outputDirPath, "*.po"));
+  const poFilesToUpdate = glob.sync(path.join(templateDirPath, "*.po"));
   for (const poFileToUpdate of poFilesToUpdate) {
-    await updateLocale(templateOutputPath, poFileToUpdate);
+    await updateLocale(templateFilePath, poFileToUpdate);
   }
 };
 
