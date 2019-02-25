@@ -16,15 +16,14 @@ const updateLocale = async (templatePath: string, localeFilePath: string) => {
   await writeFile(localeFilePath, updatedLocaleData);
 };
 
-// TODO change params order
-const exportStrings = async (outputPath: string, inputFilesGlob: string) => {
-  await mkdirp(outputPath);
-  const templateOutputPath = path.join(outputPath, "template.pot");
+const exportStrings = async (inputFilesGlob: string, outputDirPath: string) => {
+  await mkdirp(outputDirPath);
+  const templateOutputPath = path.join(outputDirPath, "template.pot");
   await parseGlobPromisified([inputFilesGlob], {
     output: templateOutputPath,
     ...lionessConfig,
   });
-  const poFilesToUpdate = glob.sync(path.join(outputPath, "*.po"));
+  const poFilesToUpdate = glob.sync(path.join(outputDirPath, "*.po"));
   for (const poFileToUpdate of poFilesToUpdate) {
     await updateLocale(templateOutputPath, poFileToUpdate);
   }

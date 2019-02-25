@@ -2,10 +2,10 @@ import { getPoParsed, getTranslations } from "./importStrings";
 
 const areTranslationsComplete = async (
   poFilesDirPath: string,
-  templatePath: string,
+  templateFilePath: string,
 ) => {
   const translations = await getTranslations(poFilesDirPath);
-  const template = await getPoParsed(templatePath);
+  const template = await getPoParsed(templateFilePath);
 
   for (const translationKey of Object.keys(template.translations)) {
     const locales = Object.keys(translations);

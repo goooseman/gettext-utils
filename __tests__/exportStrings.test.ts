@@ -18,8 +18,8 @@ const msgIdsToCheck = [
 it("Should export correct strings from .jsx and .tsx files", async () => {
   const tmpPath = await getTmpPath();
   await exportStrings(
-    tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    tmpPath,
   );
   const result = readFileFromTmp(tmpPath, templateName);
   expect(result).toMatchSnapshot(templateName);
@@ -33,8 +33,8 @@ it("Should overwrite template.pot", async () => {
   const filePath = path.join(tmpPath, templateName);
   await fse.createFile(filePath);
   await exportStrings(
-    tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    tmpPath,
   );
   const result = readFileFromTmp(tmpPath, templateName);
   expect(result).toMatchSnapshot(templateName);
@@ -45,8 +45,8 @@ it("Should update .po files with new translations", async () => {
   const tmpPath = await getTmpPath();
   await fse.copy("__fixtures__/po", tmpPath);
   await exportStrings(
-    tmpPath,
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    tmpPath,
   );
   const locales = ["fr.po", "he.po", "ru.po"];
 

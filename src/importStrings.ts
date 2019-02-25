@@ -20,11 +20,11 @@ export const getTranslations = async (poFilesPath: string) => {
   return translations;
 };
 
-const importStrings = async (poFilesPath: string, outputPath: string) => {
-  const translations = await getTranslations(poFilesPath);
-  await fse.mkdirp(outputPath);
+const importStrings = async (poFilesDirPath: string, outputDirPath: string) => {
+  const translations = await getTranslations(poFilesDirPath);
+  await fse.mkdirp(outputDirPath);
   await fse.writeFile(
-    path.join(outputPath, "translations.json"),
+    path.join(outputDirPath, "translations.json"),
     JSON.stringify(translations),
   );
 };
