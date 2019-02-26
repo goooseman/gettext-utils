@@ -1,4 +1,4 @@
-import { importStrings } from "@src/main";
+import importStrings from "@src/importStrings";
 import { getTmpPath } from "__helpers__/fs";
 import * as fse from "fs-extra";
 import * as path from "path";

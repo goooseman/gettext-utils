@@ -1,4 +1,6 @@
-import { areTranslationsComplete } from "@src/main";
+import areTranslationsComplete, {
+  TranslationMissingError,
+} from "@src/areTranslationsComplete";
 import * as path from "path";
 
 const fixturesPath = "__fixtures__";
@@ -15,12 +17,15 @@ test("it should return true for po folder", async () => {
 });
 
 test("it should return false for poInvalid folder", async () => {
-  expect(
+  expect.assertions(1);
+  try {
     await areTranslationsComplete(
       badFixturesPath,
       getTemplatePathInDir(badFixturesPath),
-    ),
-  ).toBe(false);
+    );
+  } catch (e) {
+    expect(e).toBeInstanceOf(TranslationMissingError);
+  }
 });
 
 const getTemplatePathInDir = (dir: string) => {

@@ -1,5 +1,7 @@
 import { getPoParsed, getTranslations } from "./importStrings";
 
+export class TranslationMissingError extends Error {}
+
 const areTranslationsComplete = async (
   poFilesDirPath: string,
   templateFilePath: string,
@@ -11,7 +13,9 @@ const areTranslationsComplete = async (
     const locales = Object.keys(translations);
     for (const locale of locales) {
       if (!translations[locale].translations[translationKey]) {
-        return false;
+        throw new TranslationMissingError(
+          `${translationKey} in ${locale} is missing`,
+        );
       }
     }
   }

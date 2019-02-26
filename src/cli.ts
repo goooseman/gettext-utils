@@ -8,7 +8,7 @@ import { areTranslationsComplete, exportStrings, importStrings } from "./main";
 // tslint:disable no-unused-expression
 yargs
   .command(
-    "export-strings [input-files-glob] [output-path]",
+    "export-strings [input-files-glob] [output]",
     "exports translations from  to .pot and .po files",
     (yargsArguments: Argv) => {
       return yargsArguments
@@ -16,23 +16,23 @@ yargs
           describe: "Glob to look for the source code with translations",
           default: "src/**/{*.js,*.jsx,*.ts,*.tsx}",
         })
-        .positional("outputPath", {
+        .positional("outputFilePath", {
           describe: "Path to output .pot file",
           default: "./src/i18n/template.pot",
         });
     },
     ({
-      outputPath,
       inputFilesGlob,
+      outputFilePath,
     }: {
       inputFilesGlob: string;
-      outputPath: string;
+      outputFilePath: string;
     }) => {
-      exportStrings(outputPath, inputFilesGlob).catch(console.error);
+      exportStrings(inputFilesGlob, outputFilePath).catch(console.error);
     },
   )
   .command(
-    "import-strings [po-files-path] [output-path]",
+    "import-strings [po-files-path] [output]",
     "generate translations.json from all .po files in the source folder",
     (yargsArguments: Argv) => {
       return yargsArguments
@@ -40,19 +40,19 @@ yargs
           describe: "Path to look for .po files in",
           default: "./src/i18n/",
         })
-        .positional("outputPath", {
+        .positional("outputFilePath", {
           describe: "Path to output .json file",
           default: "./src/i18n/translations.json",
         });
     },
     ({
       poFilesPath,
-      outputPath,
+      outputFilePath,
     }: {
       poFilesPath: string;
-      outputPath: string;
+      outputFilePath: string;
     }) => {
-      importStrings(poFilesPath, outputPath).catch(console.error);
+      importStrings(poFilesPath, outputFilePath).catch(console.error);
     },
   )
   .command(
@@ -76,12 +76,11 @@ yargs
       poFilesDirPath: string;
       templatePath: string;
     }) => {
-      areTranslationsComplete(poFilesDirPath, templatePath).catch(
-        console.error,
-      );
+      return areTranslationsComplete(poFilesDirPath, templatePath);
     },
   )
-  .showHelpOnFail(true)
+  .showHelpOnFail(false)
   .demandCommand(1, "")
   .help()
+  .strict()
   .alias("help", "h").argv;
