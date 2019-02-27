@@ -2,6 +2,7 @@ import exportStrings from "@src/exportStrings";
 import { getTmpPath } from "__helpers__/fs";
 import * as fse from "fs-extra";
 import * as path from "path";
+import * as packageJson from "../package.json"; // tslint:disable-line no-relative-imports max-line-length
 
 beforeAll(() => {
   global.Date.prototype.toString = () => "Thu Jan 01 2018 00:00:00";
@@ -62,4 +63,20 @@ it("Should update .po files with new translations", async () => {
     }
     expect(result).toMatchSnapshot(locale);
   }
+});
+
+it("Should generate Project-Id-Version header", async () => {
+  const tmpPath = await getTmpPath();
+  const filePath = path.join(tmpPath, templateName);
+  await exportStrings(
+    "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+  );
+  const result = await fse.readFile(filePath, encoding);
+  expect(result).toMatch(
+    new RegExp(
+      `"Project-Id-Version: ${packageJson.name} ${packageJson.version}\\\\n"`,
+      "m",
+    ),
+  );
 });

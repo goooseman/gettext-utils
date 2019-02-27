@@ -3,6 +3,7 @@
 exports[`Should export correct strings from .jsx and .tsx files: template.pot 1`] = `
 "msgid \\"\\"
 msgstr \\"\\"
+\\"Project-Id-Version: lioness-utils 0.0.1\\\\n\\"
 \\"Content-Type: text/plain; charset=utf-8\\\\n\\"
 \\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
@@ -36,6 +37,7 @@ msgstr[1] \\"\\""
 exports[`Should overwrite template.pot: template.pot 1`] = `
 "msgid \\"\\"
 msgstr \\"\\"
+\\"Project-Id-Version: lioness-utils 0.0.1\\\\n\\"
 \\"Content-Type: text/plain; charset=utf-8\\\\n\\"
 \\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"

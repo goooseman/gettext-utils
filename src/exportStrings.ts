@@ -9,6 +9,21 @@ import lionessConfig from "./config/lioness.config";
 const parseGlobPromisified = promisify(parseGlob);
 const encoding = "utf-8";
 
+const getPackageNameAndVersion = async () => {
+  try {
+    const packageJsonPath = path.join(process.cwd(), "package.json");
+    const packageJson = JSON.parse(
+      await readFile(packageJsonPath, encoding),
+    ) as {
+      name?: string;
+      version?: string;
+    };
+    return `${packageJson.name} ${packageJson.version}`;
+  } catch (e) {
+    return false;
+  }
+};
+
 const updateLocale = async (
   templateFilePath: string,
   localeFilePath: string,
@@ -24,9 +39,16 @@ const exportStrings = async (
   templateFilePath: string,
 ) => {
   const templateDirPath = path.dirname(templateFilePath);
+  const packageName = await getPackageNameAndVersion();
   await mkdirp(templateDirPath);
   await parseGlobPromisified([inputFilesGlob], {
     output: templateFilePath,
+    transformHeaders: packageName
+      ? (x) => ({
+          "Project-Id-Version": packageName,
+          ...x,
+        })
+      : (x) => x,
     ...lionessConfig,
   });
   const poFilesToUpdate = glob.sync(path.join(templateDirPath, "*.po"));
