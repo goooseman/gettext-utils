@@ -1,10 +1,10 @@
 import { mkdirp, readFile, writeFile } from "fs-extra";
 import * as glob from "glob";
 import * as path from "path";
-import { mergePotContents } from "pot-merge";
 import { parseGlob } from "react-gettext-parser";
 import { promisify } from "util";
 import lionessConfig from "./config/lioness.config";
+import mergePotContents from "./mergePotContents";
 
 const parseGlobPromisified = promisify(parseGlob);
 const encoding = "utf-8";
@@ -30,7 +30,7 @@ const updateLocale = async (
 ) => {
   const template = await readFile(templateFilePath, encoding);
   const localeFile = await readFile(localeFilePath, encoding);
-  const updatedLocaleData = mergePotContents(localeFile, template);
+  const updatedLocaleData = mergePotContents(template, localeFile);
   await writeFile(localeFilePath, updatedLocaleData);
 };
 

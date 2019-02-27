@@ -37,6 +37,20 @@ Language: fr
           ],
         },
       },
+      "lion.females": Object {
+        "one female lion": Object {
+          "comments": Object {
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          },
+          "msgctxt": "lion.females",
+          "msgid": "one female lion",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "lionne",
+            "{{ count }} lionnes",
+          ],
+        },
+      },
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
@@ -86,6 +100,22 @@ Language: he
           ],
         },
       },
+      "lion.females": Object {
+        "one female lion": Object {
+          "comments": Object {
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          },
+          "msgctxt": "lion.females",
+          "msgid": "one female lion",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "לביאה",
+            "שתי לביאה",
+            "‫{{count}} לביאות",
+            "‏‫{{count}} לביא",
+          ],
+        },
+      },
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
@@ -132,6 +162,21 @@ X-Generator: Poedit 2.2.1
 Last-Translator: 
 Language: ru
 ",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "comments": Object {
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          },
+          "msgctxt": "lion.females",
+          "msgid": "one female lion",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "одна львица",
+            "{{ сount }} львицы",
+            "{{ count }} львиц",
           ],
         },
       },

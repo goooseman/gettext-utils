@@ -16,3 +16,12 @@ msgstr ""
 msgctxt "lion.sound"
 msgid "Rrrrr"
 msgstr "רררר"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt "lion.females"
+msgid "one female lion"
+msgid_plural "{{ count }} female lions"
+msgstr[0] "לביאה"
+msgstr[1] "שתי לביאה"
+msgstr[2] "‫{{count}} לביאות"
+msgstr[3] "‏‫{{count}} לביא"
