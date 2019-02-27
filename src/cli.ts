@@ -24,11 +24,13 @@ yargs
     ({
       inputFilesGlob,
       outputFilePath,
+      defaultLocale,
     }: {
       inputFilesGlob: string;
       outputFilePath: string;
+      defaultLocale?: string;
     }) => {
-      exportStrings(inputFilesGlob, outputFilePath).catch(console.error);
+      return exportStrings(inputFilesGlob, outputFilePath, defaultLocale);
     },
   )
   .command(
@@ -52,7 +54,7 @@ yargs
       poFilesPath: string;
       outputFilePath: string;
     }) => {
-      importStrings(poFilesPath, outputFilePath).catch(console.error);
+      return importStrings(poFilesPath, outputFilePath);
     },
   )
   .command(

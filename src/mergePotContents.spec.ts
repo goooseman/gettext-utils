@@ -1,4 +1,4 @@
-import mergePotContents from "./mergePotContents";
+import mergePotContents, { translateDefaultLocale } from "./mergePotContents";
 
 // tslint:disable
 const templatePot = `
@@ -71,4 +71,50 @@ msgstr ""`;
 
 test("it should update headers and messages from .pot file to a existing .po file", () => {
   expect(mergePotContents(templatePot, localePo)).toBe(result);
+});
+
+describe("translateDefaultLocale", () => {
+  const translationStub = {
+    charset: {},
+    headers: {
+      "plural-forms": "",
+    },
+    translations: {
+      test: {
+        test: {
+          msgctxt: "test",
+          msgid: "one test",
+        },
+      },
+      testPlural: {
+        testPlural: {
+          msgctxt: "test.plural",
+          msgid: "one test",
+          msgid_plural: "%s tests",
+        },
+      },
+    },
+  };
+
+  it("Should put default translation to translation object", () => {
+    expect(translateDefaultLocale(translationStub)).toMatchObject({
+      translations: {
+        test: {
+          test: {
+            msgctxt: "test",
+            msgid: "one test",
+            msgstr: ["one test"],
+          },
+        },
+        testPlural: {
+          testPlural: {
+            msgctxt: "test.plural",
+            msgid: "one test",
+            msgid_plural: "%s tests",
+            msgstr: ["one test", "%s tests"],
+          },
+        },
+      },
+    });
+  });
 });

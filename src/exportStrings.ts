@@ -27,16 +27,22 @@ const getPackageNameAndVersion = async () => {
 const updateLocale = async (
   templateFilePath: string,
   localeFilePath: string,
+  isDefault: boolean,
 ) => {
   const template = await readFile(templateFilePath, encoding);
   const localeFile = await readFile(localeFilePath, encoding);
-  const updatedLocaleData = mergePotContents(template, localeFile);
+  const updatedLocaleData = mergePotContents(template, localeFile, isDefault);
   await writeFile(localeFilePath, updatedLocaleData);
+};
+
+export const isDefaultLocale = (localePath: string, locale?: string) => {
+  return path.basename(localePath, path.extname(localePath)) === locale;
 };
 
 const exportStrings = async (
   inputFilesGlob: string,
   templateFilePath: string,
+  defaultLocale?: string,
 ) => {
   const templateDirPath = path.dirname(templateFilePath);
   const packageName = await getPackageNameAndVersion();
@@ -53,7 +59,11 @@ const exportStrings = async (
   });
   const poFilesToUpdate = glob.sync(path.join(templateDirPath, "*.po"));
   for (const poFileToUpdate of poFilesToUpdate) {
-    await updateLocale(templateFilePath, poFileToUpdate);
+    await updateLocale(
+      templateFilePath,
+      poFileToUpdate,
+      isDefaultLocale(poFileToUpdate, defaultLocale),
+    );
   }
 };
 

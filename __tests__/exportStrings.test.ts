@@ -17,12 +17,16 @@ const msgIdsToCheck = [
   /msgctxt "lion\.sound"/,
 ];
 
-const copyPoAndGeneratePot = async (tmpPath: string) => {
+const copyPoAndGeneratePot = async (
+  tmpPath: string,
+  defaultLocale?: string,
+) => {
   await fse.copy("__fixtures__/po", tmpPath);
   const filePath = path.join(tmpPath, templateName);
   await exportStrings(
     "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
     filePath,
+    defaultLocale,
   );
 };
 
@@ -56,7 +60,7 @@ it("Should overwrite template.pot", async () => {
 it("Should update .po files with new translations", async () => {
   const tmpPath = await getTmpPath();
   await copyPoAndGeneratePot(tmpPath);
-  const locales = ["fr.po", "he.po", "ru.po"];
+  const locales = ["fr.po", "he.po", "ru.po", "en.po"];
 
   for (const locale of locales) {
     const localeFilePath = path.join(tmpPath, locale);
@@ -88,7 +92,7 @@ it("Should generate Project-Id-Version header", async () => {
 it("Should generate Project-Id-Version header in .po files", async () => {
   const tmpPath = await getTmpPath();
   await copyPoAndGeneratePot(tmpPath);
-  const locales = ["fr.po", "he.po", "ru.po"];
+  const locales = ["fr.po", "he.po", "ru.po", "en.po"];
   for (const locale of locales) {
     const localeFilePath = path.join(tmpPath, locale);
     const result = await fse.readFile(localeFilePath, encoding);
@@ -99,4 +103,14 @@ it("Should generate Project-Id-Version header in .po files", async () => {
       ),
     );
   }
+});
+
+it("Should generate translation in default locale .po file", async () => {
+  const tmpPath = await getTmpPath();
+  await copyPoAndGeneratePot(tmpPath, "en");
+  const localeFilePath = path.join(tmpPath, "en.po");
+  const result = await fse.readFile(localeFilePath, encoding);
+  expect(result).toMatch(`msgctxt "lion.title"
+msgid "Lion"
+msgstr "Lion"`);
 });

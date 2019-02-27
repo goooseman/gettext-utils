@@ -8,9 +8,10 @@ interface Translation {
     [key: string]: {
       [key: string]: {
         msgid: string;
+        msgid_plural?: string;
         msgctxt: string;
-        msgstr: string;
-        comments: {
+        msgstr?: string[];
+        comments?: {
           reference: string;
         };
       };

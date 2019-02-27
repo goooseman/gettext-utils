@@ -2,6 +2,69 @@
 
 exports[`should generate node-gettext .json files from .po files 1`] = `
 Object {
+  "en": Object {
+    "charset": "utf-8",
+    "headers": Object {
+      "content-transfer-encoding": "8bit",
+      "content-type": "text/plain; charset=UTF-8",
+      "language": "en",
+      "language-team": "",
+      "last-translator": "",
+      "mime-version": "1.0",
+      "plural-forms": "nplurals=2; plural=(n != 1);",
+      "po-revision-date": "",
+      "pot-creation-date": "Thu Jan 01 2018 00:00:00",
+      "project-id-version": "",
+      "x-generator": "Poedit 2.2.1",
+    },
+    "translations": Object {
+      "": Object {
+        "": Object {
+          "msgid": "",
+          "msgstr": Array [
+            "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=2; plural=(n != 1);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: en
+",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "comments": Object {
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          },
+          "msgctxt": "lion.females",
+          "msgid": "one female lion",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "one female lion",
+            "{{ count }} female lions",
+          ],
+        },
+      },
+      "lion.sound": Object {
+        "Rrrrr": Object {
+          "comments": Object {
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+          },
+          "msgctxt": "lion.sound",
+          "msgid": "Rrrrr",
+          "msgstr": Array [
+            "Rrrr",
+          ],
+        },
+      },
+    },
+  },
   "fr": Object {
     "charset": "utf-8",
     "headers": Object {
