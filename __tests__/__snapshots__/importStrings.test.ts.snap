@@ -100,6 +100,20 @@ Language: fr
           ],
         },
       },
+      "fake": Object {
+        "should be deleted": Object {
+          "comments": Object {
+            "reference": "some component that does not exists",
+          },
+          "msgctxt": "fake",
+          "msgid": "should be deleted",
+          "msgid_plural": "Delete me {{ count }} times",
+          "msgstr": Array [
+            "Delete me",
+            "Delete me {{ count }} times",
+          ],
+        },
+      },
       "lion.females": Object {
         "one female lion": Object {
           "comments": Object {

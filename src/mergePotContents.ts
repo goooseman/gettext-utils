@@ -1,23 +1,39 @@
 import { po } from "gettext-parser";
 
-export const translateDefaultLocale = (
-  translationObject: Translation,
-): Translation => {
-  const translationContextKeys = Object.keys(translationObject.translations);
-  for (const translationContextKey of translationContextKeys) {
-    const translationsKeys = Object.keys(
-      translationObject.translations[translationContextKey],
-    );
-    for (const key of translationsKeys) {
-      const translation =
-        translationObject.translations[translationContextKey][key];
-      translation.msgstr = [translation.msgid];
-      if (translation.msgid_plural) {
-        translation.msgstr.push(translation.msgid_plural);
+const translationExists = (
+  translations: Translation["translations"],
+  context: string,
+  id: string,
+) => translations && translations[context] && translations[context][id];
+
+export const mergeTranslations = (
+  templateTranslations: Translation["translations"],
+  localeTranslations: Translation["translations"],
+  isDefault?: boolean,
+) => {
+  const result: Translation["translations"] = {};
+  for (const context of Object.keys(templateTranslations)) {
+    result[context] = {};
+    for (const id of Object.keys(templateTranslations[context])) {
+      result[context][id] = templateTranslations[context][id];
+      const resultTranslation = result[context][id];
+      if (!isDefault) {
+        resultTranslation.msgstr = translationExists(
+          localeTranslations,
+          context,
+          id,
+        )
+          ? localeTranslations[context][id].msgstr
+          : templateTranslations[context][id].msgstr;
+      } else {
+        resultTranslation.msgstr = [resultTranslation.msgid];
+        if (resultTranslation.msgid_plural) {
+          resultTranslation.msgstr.push(resultTranslation.msgid_plural);
+        }
       }
     }
   }
-  return translationObject;
+  return result;
 };
 
 const mergePotContents = (
@@ -28,22 +44,19 @@ const mergePotContents = (
   const templatePotParsed = po.parse(templatePot);
   const localePoParsed = po.parse(localePo);
 
-  let resultParsed: Translation = {
+  const resultParsed: Translation = {
     charset: templatePotParsed.charset,
     headers: {
       ...localePoParsed.headers,
       ...templatePotParsed.headers,
       "plural-forms": localePoParsed.headers["plural-forms"],
     },
-    translations: {
-      ...templatePotParsed.translations,
-      ...localePoParsed.translations,
-    },
+    translations: mergeTranslations(
+      templatePotParsed.translations,
+      localePoParsed.translations,
+      isDefault,
+    ),
   };
-
-  if (isDefault) {
-    resultParsed = translateDefaultLocale(resultParsed);
-  }
 
   return po.compile(resultParsed).toString();
 };

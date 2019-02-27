@@ -23,3 +23,10 @@ msgid "one female lion"
 msgid_plural "{{ count }} female lions"
 msgstr[0] "lionne"
 msgstr[1] "{{ count }} lionnes"
+
+#: some component that does not exists
+msgctxt "fake"
+msgid "should be deleted"
+msgid_plural "Delete me {{ count }} times"
+msgstr[0] "Delete me"
+msgstr[1] "Delete me {{ count }} times"

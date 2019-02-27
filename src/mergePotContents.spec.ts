@@ -1,4 +1,4 @@
-import mergePotContents, { translateDefaultLocale } from "./mergePotContents";
+import mergePotContents, { mergeTranslations } from "./mergePotContents";
 
 // tslint:disable
 const templatePot = `
@@ -41,6 +41,11 @@ msgstr ""
 msgctxt "header.title"
 msgid "Some name"
 msgstr "Какое-то название"
+
+#: src/layouts/Header.tsx:29
+msgctxt "outdated.title"
+msgid "No more in the code"
+msgstr "No more in the code"
 `;
 
 const result = `msgid ""
@@ -73,45 +78,75 @@ test("it should update headers and messages from .pot file to a existing .po fil
   expect(mergePotContents(templatePot, localePo)).toBe(result);
 });
 
-describe("translateDefaultLocale", () => {
-  const translationStub = {
-    charset: {},
-    headers: {
-      "plural-forms": "",
-    },
-    translations: {
-      test: {
-        test: {
-          msgctxt: "test",
-          msgid: "one test",
+describe("mergeTranslations", () => {
+  const templateTranslationsObject = {
+    "header.title": {
+      "Some name": {
+        msgid: "Some name",
+        msgid_plural: "{{ count }} names",
+        msgctxt: "header.title",
+        comments: {
+          reference: "src/layout/Header.tsx:24",
         },
       },
-      testPlural: {
-        testPlural: {
-          msgctxt: "test.plural",
-          msgid: "one test",
-          msgid_plural: "%s tests",
+    },
+  };
+  const localeTranslationsObject = {
+    "header.title": {
+      "Some name": {
+        msgid: "Some name",
+        msgid_plural: "{{ count }} names",
+        msgctxt: "header.title",
+        msgstr: [
+          "Translated",
+          "{{ count }} translated",
+          "and 3 {{ count }} translated",
+        ],
+        comments: {
+          reference: "some other",
         },
       },
     },
   };
 
-  it("Should put default translation to translation object", () => {
-    expect(translateDefaultLocale(translationStub)).toMatchObject({
-      translations: {
-        test: {
-          test: {
-            msgctxt: "test",
-            msgid: "one test",
-            msgstr: ["one test"],
+  it("should take a translation string from locale file, if it is not a default locale", () => {
+    expect(
+      mergeTranslations(templateTranslationsObject, localeTranslationsObject),
+    ).toMatchObject({
+      "header.title": {
+        "Some name": {
+          msgid: "Some name",
+          msgid_plural: "{{ count }} names",
+          msgctxt: "header.title",
+          msgstr: [
+            "Translated",
+            "{{ count }} translated",
+            "and 3 {{ count }} translated",
+          ],
+          comments: {
+            reference: "src/layout/Header.tsx:24",
           },
         },
-        testPlural: {
-          testPlural: {
-            msgctxt: "test.plural",
-            msgid: "one test",
-            msgid_plural: "%s tests",
-            msgstr: ["one test", "%s tests"],
+      },
+    });
+  });
+
+  it("should take a translation string from template file, if it is a default locale", () => {
+    expect(
+      mergeTranslations(
+        templateTranslationsObject,
+        localeTranslationsObject,
+        true,
+      ),
+    ).toMatchObject({
+      "header.title": {
+        "Some name": {
+          msgid: "Some name",
+          msgid_plural: "{{ count }} names",
+          msgctxt: "header.title",
+          msgstr: ["Some name", "{{ count }} names"],
+          comments: {
+            reference: "src/layout/Header.tsx:24",
           },
         },
       },
