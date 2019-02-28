@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/goooseman/gettext-utils.svg?branch=master)](https://travis-ci.org/goooseman/gettext-utils)
 [![Coverage Status](https://coveralls.io/repos/github/goooseman/gettext-utils/badge.svg?branch=master)](https://coveralls.io/github/goooseman/gettext-utils?branch=master)
 
-> A pack of utils to extract strings from JS application to .pot file, merge it with existing .po files and / import these strings back to a [lioness](https://github.com/alexanderwallin/lioness) compatible .json file / validate that all the strings are translated before release
+> A set of utils to extract strings from JS application to .pot file, merge it with existing .po files and / import these strings back to a [lioness](https://github.com/alexanderwallin/lioness) compatible .json file / validate that all the strings are translated before release
 
 ## Installation
 
