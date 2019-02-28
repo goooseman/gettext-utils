@@ -23,7 +23,7 @@
     "test": "jest --detectOpenHandles",
     "test:unit": "jest --detectOpenHandles --testPathPattern \"src/.+spec.tsx?$\"",
     "test:e2e": "jest --detectOpenHandles --testPathPattern \"__tests__/.+.tsx?\"",
-    "test:ci": "jest --detectOpenHandles --coverage",
+    "test:ci": "jest --detectOpenHandles --coverage && cat ./coverage/lcov.info | coveralls",
     "clean": "rimraf '{src,__tests__}/**/*.js?(x)?(.map)'",
     "release": "./extra/deployment/release.sh",
     "prepare": "npm run build:clean"
@@ -51,6 +51,7 @@
     "@types/jest": "^23.3.13",
     "@types/yargs": "^12.0.9",
     "concurrently": "^4.1.0",
+    "coveralls": "^3.0.3",
     "jest": "^23.6.0",
     "lioness": "^0.2.13",
     "nodemon": "^1.18.10",

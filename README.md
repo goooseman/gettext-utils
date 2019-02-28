@@ -1,31 +1,40 @@
-# Trucknet Boilerplate for nodejs project on Typescript
+# gettext-utils
 
-> A sample node project on typescript with tslint (and trucknet tslint config), prettier, lint-staged, commitizen, jest, ts-jest, jest-coverage-badges preinstalled and preconfigured.
+[![Build Status](https://travis-ci.org/goooseman/gettext-utils.svg?branch=master)](https://travis-ci.org/goooseman/gettext-utils)
+[![Coverage Status](https://coveralls.io/repos/github/goooseman/gettext-utils/badge.svg?branch=master)](https://coveralls.io/github/goooseman/gettext-utils?branch=master)
 
-## TODO
+> A pack of utils to extract strings from JS application to .pot file, merge it with existing .po files and / import these strings back to a [lioness](https://github.com/alexanderwallin/lioness) compatible .json file / validate that all the strings are translated before release
 
-- Validate translations task
+## Installation
 
-## Getting started
+`npm i --save-dev gettext-utils`
 
-1. `git clone` this repository
-2. `rm -rf .git`
-3. `git init`
-4. `git remote add origin`
-5. `git flow init`
-6. Edit package.json to change name, description and git repository
+## Usage
 
-## Start
+- `export-strings [input-files-glob] [output] [--default-locale=locale]` parse through all the files provided in `input-files-glob` (`src/**/{*.js,*.jsx,*.ts,*.tsx}` by default) (uses [glob](https://www.npmjs.com/package/glob)) and generate .pot file in the output path (`./src/i18n/template.pot` by default). Then searches for all the `.po` files in the same directory and updates them with new strings to translate. If `default-locale` is provided (e.g. `en`) and this locale's `.po` file exists in the same folder (e.g. `en.po`), this file will be populated with the translations automatically.
+- `import-strings [po-files-path] [output]` parse all the `.po` files inside the directory provided as `po-files-path` (`./src/i18n/` by default) and generate [lioness](https://github.com/alexanderwallin/lioness) compatible `.json` file in the output path (`./src/i18n/translations.json`), which is an object with each locale as a key and [gettext-parser](https://www.npmjs.com/package/gettext-parser) object for this locale as a value.
+- `validate-strings [po-files-dir-path] [template-path]` validate all `.po` files inside `po-files-dir-path` (`./src/i18n/` by default) to have all the translations in the `.pot` file provided in `template-path` (`./src/i18n/template.pot` by default).
 
-`npm run build` to build js, `npm start` to start
+## Use-case
 
-## Tests
+For example, you have a react project in `src` folder and you want to use [lioness](https://github.com/alexanderwallin/lioness) to translate your application.
 
-`npm test` to launch all tests.
+### Init
 
-Unit tests should be near the file with `.spec.ts` extention.
-Integration tests should be in **tests**
+1. `npm i --save lioness`
+1. `npm i --save-dev gettext-utils`
+1. Write your first translatable string with `<T>` component or `withTranslations` HOC.
+1. `npx gettext-utils export-strings` to create a `src/i18n/template.pot` file.
+1. Open it with [POEdit](https://poedit.net/) and create locale files from it in the same folder (including the default locale, e.g. en)
+1. Create a `prestart` and `prebuild` scripts inside `scripts` section of your `package.json`: `"prestart": "gettext-utils import-strings"` to generate `translations.json` file automatically.
+1. Include `/src/i18n/translations.json` file inside your `.gitignore` (this file is generated automatically).
+1. Add `gettext-utils export-strings` in any precommit hook you are using, so the translations will be exported automatically ([husky](https://www.npmjs.com/package/husky)).
 
-## Release
+### Translate
 
-`npm test patch/minor/major` will start a release/ branch (using git flow), edit package.json (and lock) to update the version, commit, finish the release and push including all branches and tags
+1. There are plenty of tools, that connect to your git repository with an online translation tool (eg. [POEditor](https://poeditor.com/) or open-source [Weblate](https://weblate.org/en/)).
+1. Translators can translate all the application in the `develop` branch before relase.
+
+### Release
+
+1. You can run `npx gettext-utils validate-strings` to make sure that everything is translated before each release.
