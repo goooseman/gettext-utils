@@ -1,5 +1,5 @@
 {
-  "name": "lioness-utils",
+  "name": "gettext-utils",
   "version": "0.0.1",
   "description": "A set of utils to parse react files and export .po files and import them back",
   "bin": "src/cli.js",
