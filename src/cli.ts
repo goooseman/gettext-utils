@@ -3,7 +3,12 @@
 import * as yargs from "yargs";
 // tslint:disable-next-line no-duplicate-imports
 import { Argv } from "yargs";
-import { areTranslationsComplete, exportStrings, importStrings } from "./main";
+import {
+  areTranslationsComplete,
+  exportStrings,
+  importStrings,
+  updateTranslations,
+} from "./main";
 
 // tslint:disable no-unused-expression
 yargs
@@ -79,6 +84,30 @@ yargs
       templatePath: string;
     }) => {
       return areTranslationsComplete(poFilesDirPath, templatePath);
+    },
+  )
+  .command(
+    "merge-translations [po-files-dir-path] [template-path]",
+    "merge all new translations from .pot file to .po files in a dir",
+    (yargsArguments: Argv) => {
+      return yargsArguments
+        .positional("poFilesDirPath", {
+          describe: "Path to look for .po files in",
+          default: "./src/i18n/",
+        })
+        .positional("templatePath", {
+          describe: "Path to template.pot file",
+          default: "./src/i18n/template.pot",
+        });
+    },
+    ({
+      poFilesDirPath,
+      templatePath,
+    }: {
+      poFilesDirPath: string;
+      templatePath: string;
+    }) => {
+      return updateTranslations(poFilesDirPath, templatePath);
     },
   )
   .showHelpOnFail(false)

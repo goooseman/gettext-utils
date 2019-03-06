@@ -1,4 +1,8 @@
-import mergePotContents, { mergeTranslations } from "./mergePotContents";
+import {
+  isDefaultLocale,
+  mergePotContents,
+  mergeTranslations,
+} from "./updateTranslations";
 
 // tslint:disable
 const templatePot = `
@@ -151,5 +155,18 @@ describe("mergeTranslations", () => {
         },
       },
     });
+  });
+});
+
+describe("isDefaultLocale", () => {
+  test("it should return true", () => {
+    expect(isDefaultLocale("foo/bar/en.po", "en")).toBe(true);
+  });
+  test("it should return false", () => {
+    expect(isDefaultLocale("foo/bar/pl.po", "en")).toBe(false);
+  });
+
+  test("it should return false if locale is undefined", () => {
+    expect(isDefaultLocale("foo/bar/pl.po")).toBe(false);
   });
 });
