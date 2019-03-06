@@ -6,8 +6,8 @@ import * as path from "path";
 const encoding = "utf-8";
 
 const updateTranslationsByPath = async (
-  templateFilePath: string,
   poDirPath: string,
+  templateFilePath: string,
   defaultLocale?: string,
 ) => {
   const poFilesToUpdate = glob.sync(path.join(poDirPath, "*.po"));

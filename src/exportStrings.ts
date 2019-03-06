@@ -41,7 +41,7 @@ const exportStrings = async (
       : (x) => x,
     ...lionessConfig,
   });
-  await updateTranslations(templateFilePath, templateDirPath, defaultLocale);
+  await updateTranslations(templateDirPath, templateFilePath, defaultLocale);
 };
 
 export default exportStrings;
