@@ -28,7 +28,7 @@ For example, you have a react project in `src` folder and you want to use [lione
 1. Open it with [POEdit](https://poedit.net/) and create locale files from it in the same folder (including the default locale, e.g. en)
 1. Create a `prestart` and `prebuild` scripts inside `scripts` section of your `package.json`: `"prestart": "gettext-utils import-strings"` to generate `translations.json` file automatically.
 1. Include `/src/i18n/translations.json` file inside your `.gitignore` (this file is generated automatically).
-1. Add `gettext-utils export-strings` in any precommit hook you are using, so the translations will be exported automatically ([husky](https://www.npmjs.com/package/husky)).
+1. Add `gettext-utils export-strings --default-locale=en && git add src/i18n/*` in any precommit hook you are using, so the translations will be exported automatically ([husky](https://www.npmjs.com/package/husky)).
 
 ### Translate
 

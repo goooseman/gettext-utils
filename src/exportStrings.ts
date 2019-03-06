@@ -1,10 +1,9 @@
-import { mkdirp, readFile, writeFile } from "fs-extra";
-import * as glob from "glob";
+import { mkdirp, readFile } from "fs-extra";
 import * as path from "path";
 import { parseGlob } from "react-gettext-parser";
 import { promisify } from "util";
 import lionessConfig from "./config/lioness.config";
-import mergePotContents from "./mergePotContents";
+import updateTranslations from "./updateTranslations";
 
 const parseGlobPromisified = promisify(parseGlob);
 const encoding = "utf-8";
@@ -22,21 +21,6 @@ const getPackageNameAndVersion = async () => {
   } catch (e) {
     return false;
   }
-};
-
-const updateLocale = async (
-  templateFilePath: string,
-  localeFilePath: string,
-  isDefault: boolean,
-) => {
-  const template = await readFile(templateFilePath, encoding);
-  const localeFile = await readFile(localeFilePath, encoding);
-  const updatedLocaleData = mergePotContents(template, localeFile, isDefault);
-  await writeFile(localeFilePath, updatedLocaleData);
-};
-
-export const isDefaultLocale = (localePath: string, locale?: string) => {
-  return path.basename(localePath, path.extname(localePath)) === locale;
 };
 
 const exportStrings = async (
@@ -57,14 +41,7 @@ const exportStrings = async (
       : (x) => x,
     ...lionessConfig,
   });
-  const poFilesToUpdate = glob.sync(path.join(templateDirPath, "*.po"));
-  for (const poFileToUpdate of poFilesToUpdate) {
-    await updateLocale(
-      templateFilePath,
-      poFileToUpdate,
-      isDefaultLocale(poFileToUpdate, defaultLocale),
-    );
-  }
+  await updateTranslations(templateFilePath, templateDirPath, defaultLocale);
 };
 
 export default exportStrings;

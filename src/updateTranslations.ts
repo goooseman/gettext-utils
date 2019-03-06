@@ -1,4 +1,24 @@
+import { readFile, writeFile } from "fs-extra";
 import { po } from "gettext-parser";
+import * as glob from "glob";
+import * as path from "path";
+
+const encoding = "utf-8";
+
+const updateTranslationsByPath = async (
+  templateFilePath: string,
+  poDirPath: string,
+  defaultLocale?: string,
+) => {
+  const poFilesToUpdate = glob.sync(path.join(poDirPath, "*.po"));
+  for (const poFileToUpdate of poFilesToUpdate) {
+    await updateLocale(
+      templateFilePath,
+      poFileToUpdate,
+      isDefaultLocale(poFileToUpdate, defaultLocale),
+    );
+  }
+};
 
 const translationExists = (
   translations: Translation["translations"],
@@ -36,7 +56,18 @@ export const mergeTranslations = (
   return result;
 };
 
-const mergePotContents = (
+const updateLocale = async (
+  templateFilePath: string,
+  localeFilePath: string,
+  isDefault: boolean,
+) => {
+  const template = await readFile(templateFilePath, encoding);
+  const localeFile = await readFile(localeFilePath, encoding);
+  const updatedLocaleData = mergePotContents(template, localeFile, isDefault);
+  await writeFile(localeFilePath, updatedLocaleData);
+};
+
+export const mergePotContents = (
   templatePot: string,
   localePo: string,
   isDefault?: boolean,
@@ -61,4 +92,8 @@ const mergePotContents = (
   return po.compile(resultParsed).toString();
 };
 
-export default mergePotContents;
+export const isDefaultLocale = (localePath: string, locale?: string) => {
+  return path.basename(localePath, path.extname(localePath)) === locale;
+};
+
+export default updateTranslationsByPath;
