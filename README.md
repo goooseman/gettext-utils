@@ -13,7 +13,7 @@
 
 - `export-strings [input-files-glob] [output] [--default-locale=locale]` parse through all the files provided in `input-files-glob` (`src/**/{*.js,*.jsx,*.ts,*.tsx}` by default) (uses [glob](https://www.npmjs.com/package/glob)) and generate .pot file in the output path (`./src/i18n/template.pot` by default). Then searches for all the `.po` files in the same directory and updates them with new strings to translate. If `default-locale` is provided (e.g. `en`) and this locale's `.po` file exists in the same folder (e.g. `en.po`), this file will be populated with the translations automatically.
 - `import-strings [po-files-path] [output]` parse all the `.po` files inside the directory provided as `po-files-path` (`./src/i18n/` by default) and generate [lioness](https://github.com/alexanderwallin/lioness) compatible `.json` file in the output path (`./src/i18n/translations.json`), which is an object with each locale as a key and [gettext-parser](https://www.npmjs.com/package/gettext-parser) object for this locale as a value.
-- `merge-translations [po-files-dir-path] [template-path]` merge updated .pot file with .po. Done automatically by `export-strings` command.
+- `merge-translations [po-files-dir-path] [template-path]` merge updated .pot file with .po. Done automatically by `export-strings` command. If `default-locale` is provided (e.g. `en`) and this locale's `.po` file exists in the same folder (e.g. `en.po`), this file will be populated with the translations automatically.
 - `validate-strings [po-files-dir-path] [template-path]` validate all `.po` files inside `po-files-dir-path` (`./src/i18n/` by default) to have all the translations in the `.pot` file provided in `template-path` (`./src/i18n/template.pot` by default).
 
 ## Use-case

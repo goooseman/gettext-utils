@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"POT-Creation-Date: Thu Jan 01 2018 00:00:00\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: \n"
+"Language: fr\n"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt "lion.sound"
+msgid "Rrrrr"
+msgstr "Oooo"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt "lion.females"
+msgid "one female lion"
+msgid_plural "{{ count }} female lions"
+msgstr[0] "lionne"
+msgstr[1] "{{ count }} lionnes"
+
+#: some component that does not exists
+msgctxt "fake"
+msgid "should be deleted"
+msgid_plural "Delete me {{ count }} times"
+msgstr[0] "Delete me"
+msgstr[1] "Delete me {{ count }} times"
