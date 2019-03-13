@@ -103,11 +103,13 @@ yargs
     ({
       poFilesDirPath,
       templatePath,
+      defaultLocale,
     }: {
       poFilesDirPath: string;
       templatePath: string;
+      defaultLocale?: string;
     }) => {
-      return updateTranslations(poFilesDirPath, templatePath);
+      return updateTranslations(poFilesDirPath, templatePath, defaultLocale);
     },
   )
   .showHelpOnFail(false)

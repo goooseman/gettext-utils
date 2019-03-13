@@ -1,0 +1,18 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"POT-Creation-Date: Thu Jan 01 2018 00:00:00\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt "lion.sound"
+msgid "Rrrrr"
+msgstr ""
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt "lion.females"
+msgid "one female lion"
+msgid_plural "{{ count }} female lions"
+msgstr[0] ""
+msgstr[1] ""
