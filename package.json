@@ -1,6 +1,6 @@
 {
   "name": "gettext-utils",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A set of utils to parse react files and export .po files and import them back",
   "bin": "src/cli.js",
   "main": "src/main.js",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/goooseman/gettext-utils.git"
   },
   "keywords": [
     "lioness",
@@ -42,9 +42,9 @@
   "author": "goooseman",
   "license": "MIT",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/goooseman/gettext-utils/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/goooseman/gettext-utils",
   "devDependencies": {
     "@material-ui/core": "^3.9.2",
     "@types/fs-extra": "^5.0.5",
