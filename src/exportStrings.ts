@@ -1,8 +1,14 @@
-import { mkdirp, readFile } from "fs-extra";
+import { existsSync, mkdirp, readFile } from "fs-extra";
+import { po } from "gettext-parser";
 import * as path from "path";
-import { parseGlob } from "react-gettext-parser";
+import {
+  extractMessagesFromGlob,
+  parseGlob,
+  toPot,
+} from "react-gettext-parser";
 import { promisify } from "util";
 import lionessConfig from "./config/lioness.config";
+import { getPoParsed } from "./importStrings";
 import updateTranslations from "./updateTranslations";
 
 const parseGlobPromisified = promisify(parseGlob);
@@ -31,6 +37,7 @@ const exportStrings = async (
   const templateDirPath = path.dirname(templateFilePath);
   const packageName = await getPackageNameAndVersion();
   await mkdirp(templateDirPath);
+  await getUpdatedTemplateContents(inputFilesGlob, templateFilePath);
   await parseGlobPromisified([inputFilesGlob], {
     output: templateFilePath,
     transformHeaders: packageName
@@ -42,6 +49,22 @@ const exportStrings = async (
     ...lionessConfig,
   });
   await updateTranslations(templateDirPath, templateFilePath, defaultLocale);
+};
+
+const getUpdatedTemplateContents = async (
+  inputFilesGlob: string,
+  templateFilePath: string,
+): Promise<string | undefined> => {
+  const newMessages = extractMessagesFromGlob([inputFilesGlob], lionessConfig);
+  const newPot = toPot(newMessages);
+  const oldTemplateExists = existsSync(templateFilePath);
+  if (!oldTemplateExists) {
+    return newPot;
+  }
+  const oldPotParsed = await getPoParsed(templateFilePath);
+  const newPotParsed = po.parse(newPot);
+  console.log(oldPotParsed, newPotParsed);
+  return;
 };
 
 export default exportStrings;

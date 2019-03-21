@@ -4,7 +4,7 @@ import * as fse from "fs-extra";
 import * as path from "path";
 import * as packageJson from "../package.json"; // tslint:disable-line no-relative-imports max-line-length
 
-beforeAll(() => {
+beforeEach(() => {
   global.Date.prototype.toString = () => "Thu Jan 01 2018 00:00:00";
 });
 
@@ -114,3 +114,22 @@ it("Should generate translation in default locale .po file", async () => {
 msgid "Lion"
 msgstr "Lion"`);
 });
+
+it("Should not update any files if there are no new translations", async () => {
+  const tmpPath = await getTmpPath();
+  const filePath = path.join(tmpPath, templateName);
+  await exportStrings(
+    "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+  );
+  const firstResult = await fse.readFile(filePath, encoding);
+  global.Date.prototype.toString = () => "Thu Jan 02 2018 00:00:00";
+  await exportStrings(
+    "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+  );
+  const secondResult = await fse.readFile(filePath, encoding);
+  expect(secondResult).toBe(firstResult);
+});
+
+it.todo("Should update all files if there are new translations");
