@@ -48,11 +48,11 @@
   "devDependencies": {
     "@material-ui/core": "^3.9.2",
     "@types/fs-extra": "^5.0.5",
-    "@types/jest": "^23.3.14",
+    "@types/jest": "^24.0.11",
     "@types/yargs": "^12.0.10",
     "concurrently": "^4.1.0",
     "coveralls": "^3.0.3",
-    "jest": "^23.6.0",
+    "jest": "^24.5.0",
     "lioness": "^0.2.13",
     "nodemon": "^1.18.10",
     "prettier-config-trucknet-io": "^2.0.1",
@@ -60,7 +60,7 @@
     "react-dom": "^16.8.4",
     "rimraf": "^2.6.3",
     "trucknet-commit": "^1.4.3",
-    "ts-jest": "^23.10.3",
+    "ts-jest": "^24.0.0",
     "tslint": "^5.14.0",
     "tslint-config-trucknet-io": "^1.5.0"
   },
