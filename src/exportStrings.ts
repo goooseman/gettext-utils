@@ -1,4 +1,4 @@
-import { existsSync, mkdirp, readFile, writeFile } from "fs-extra";
+import { existsSync, mkdirp, writeFile } from "fs-extra";
 import { po } from "gettext-parser";
 import * as path from "path";
 import { extractMessagesFromGlob, toPot } from "react-gettext-parser";
@@ -6,23 +6,7 @@ import lionessConfig from "./config/lioness.config";
 import { getPoParsed } from "./importStrings";
 import updateTranslations from "./updateTranslations";
 import arePotsDifferent from "./utils/arePotsDifferent";
-
-const encoding = "utf-8";
-
-const getPackageNameAndVersion = async () => {
-  try {
-    const packageJsonPath = path.join(process.cwd(), "package.json");
-    const packageJson = JSON.parse(
-      await readFile(packageJsonPath, encoding),
-    ) as {
-      name?: string;
-      version?: string;
-    };
-    return `${packageJson.name} ${packageJson.version}`;
-  } catch (e) {
-    return false;
-  }
-};
+import { getPackageNameAndVersion } from "./utils/packageInfo";
 
 const exportStrings = async (
   inputFilesGlob: string,

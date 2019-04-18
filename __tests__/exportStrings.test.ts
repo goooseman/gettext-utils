@@ -4,6 +4,8 @@ import * as fse from "fs-extra";
 import * as path from "path";
 import * as packageJson from "../package.json"; // tslint:disable-line no-relative-imports max-line-length
 
+jest.mock("../src/utils/packageInfo");
+
 beforeEach(() => {
   global.Date.prototype.toString = () => "Thu Jan 01 2018 00:00:00";
 });
