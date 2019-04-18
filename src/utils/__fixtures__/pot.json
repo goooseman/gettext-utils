@@ -1,0 +1,62 @@
+{
+  "charset": "utf-8",
+  "headers": {
+    "project-id-version": "gettext-utils 1.1.2",
+    "content-type": "text/plain; charset=utf-8",
+    "pot-creation-date": "Thu Jan 01 2018 00:00:00",
+    "content-transfer-encoding": "8bit",
+    "plural-forms": "nplurals=2; plural=(n != 1);"
+  },
+  "translations": {
+    "": {
+      "": {
+        "msgid": "",
+        "msgstr": [
+          "Project-Id-Version: gettext-utils 1.1.2\nContent-Type: text/plain; charset=utf-8\nPOT-Creation-Date: Thu Jan 01 2018 00:00:00\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+        ]
+      }
+    },
+    "lion.sound": {
+      "Rrrrr": {
+        "msgid": "Rrrrr",
+        "msgctxt": "lion.sound",
+        "comments": {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19"
+        },
+        "msgstr": [""]
+      }
+    },
+    "lion.females": {
+      "one female lion": {
+        "msgid": "one female lion",
+        "msgctxt": "lion.females",
+        "comments": {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23"
+        },
+        "msgid_plural": "{{ count }} female lions",
+        "msgstr": ["", ""]
+      }
+    },
+    "lion.title": {
+      "Lion": {
+        "msgid": "Lion",
+        "msgctxt": "lion.title",
+        "comments": {
+          "reference": "__fixtures__/react-project/src/components/LionessTComponent.jsx:22"
+        },
+        "msgstr": [""]
+      }
+    },
+    "lion.children": {
+      "Lion has one child": {
+        "msgid": "Lion has one child",
+        "msgctxt": "lion.children",
+        "comments": {
+          "reference": "__fixtures__/react-project/src/components/LionessTComponent.jsx:23"
+        },
+        "msgid_plural": "Lion has {{ count }} children",
+        "msgstr": ["", ""]
+      }
+    }
+  }
+}
