@@ -1,11 +1,19 @@
+import * as assert from "assert";
+
 const arePotsDifferent = (
   newPot: Translation,
   oldPot: Translation,
 ): boolean => {
-  return (
-    Object.keys(newPot.translations).length !==
-    Object.keys(oldPot.translations).length
-  );
+  const newTranslations = { ...newPot.translations };
+  const oldTranslations = { ...oldPot.translations };
+  delete newTranslations[""];
+  delete oldTranslations[""];
+  try {
+    assert.deepStrictEqual(newTranslations, oldTranslations);
+  } catch (e) {
+    return true;
+  }
+  return false;
 };
 
 export default arePotsDifferent;
