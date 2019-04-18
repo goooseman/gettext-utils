@@ -19,10 +19,32 @@ const potTwo = {
   },
 };
 
-test("it should return true for same files", () => {
-  expect(arePotsDifferent({ ...potOne }, { ...potOne })).toBe(false);
+const potThree = {
+  ...potOne,
+  translations: {
+    ...potOne.translations,
+    "lion.title": {
+      Lion: {
+        msgid: "Lion2",
+        msgctxt: "lion.title",
+        comments2: {
+          reference:
+            "__fixtures__/react-project/src/components/LionessTComponent.jsx:22",
+        },
+        msgstr2: [""],
+      },
+    },
+  },
+};
+
+test("it should return false for same translations", () => {
+  expect(arePotsDifferent(potOne, potOne)).toBe(false);
 });
 
-test("it should return false for different files", () => {
-  expect(arePotsDifferent({ ...potOne }, { ...potTwo })).toBe(true);
+test("it should return true if new translations were added", () => {
+  expect(arePotsDifferent(potOne, potTwo)).toBe(true);
+});
+
+test("it should return true if translation was changed", () => {
+  expect(arePotsDifferent(potOne, potThree)).toBe(true);
 });

@@ -132,4 +132,20 @@ it("Should not update any files if there are no new translations", async () => {
   expect(secondResult).toBe(firstResult);
 });
 
-it.todo("Should update all files if there are new translations");
+it("Should update all files if there are new translations", async () => {
+  const tmpPath = await getTmpPath();
+  const filePath = path.join(tmpPath, templateName);
+  await exportStrings(
+    "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+  );
+  const firstResult = await fse.readFile(filePath, encoding);
+  global.Date.prototype.toString = () => "Thu Jan 02 2018 00:00:00";
+  await exportStrings(
+    "__fixtures__/react-project-updated/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+  );
+  const secondResult = await fse.readFile(filePath, encoding);
+  expect(secondResult).not.toBe(firstResult);
+  expect(secondResult).toMatch(`msgctxt "lion.title-two"`);
+});

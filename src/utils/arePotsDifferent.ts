@@ -2,7 +2,10 @@ const arePotsDifferent = (
   newPot: Translation,
   oldPot: Translation,
 ): boolean => {
-  return newPot.translations.length !== oldPot.translations.length;
+  return (
+    Object.keys(newPot.translations).length !==
+    Object.keys(oldPot.translations).length
+  );
 };
 
 export default arePotsDifferent;
