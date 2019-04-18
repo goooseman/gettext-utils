@@ -2,9 +2,10 @@ import exportStrings from "@src/exportStrings";
 import { getTmpPath } from "__helpers__/fs";
 import * as fse from "fs-extra";
 import * as path from "path";
-import * as packageJson from "../package.json"; // tslint:disable-line no-relative-imports max-line-length
 
 jest.mock("../src/utils/packageInfo");
+
+const mockedProjectName = "gettext-utils 0.0.0";
 
 beforeEach(() => {
   global.Date.prototype.toString = () => "Thu Jan 01 2018 00:00:00";
@@ -84,10 +85,7 @@ it("Should generate Project-Id-Version header", async () => {
   );
   const result = await fse.readFile(filePath, encoding);
   expect(result).toMatch(
-    new RegExp(
-      `"Project-Id-Version: ${packageJson.name} ${packageJson.version}\\\\n"`,
-      "m",
-    ),
+    new RegExp(`"Project-Id-Version: ${mockedProjectName}\\\\n"`, "m"),
   );
 });
 
@@ -99,10 +97,7 @@ it("Should generate Project-Id-Version header in .po files", async () => {
     const localeFilePath = path.join(tmpPath, locale);
     const result = await fse.readFile(localeFilePath, encoding);
     expect(result).toMatch(
-      new RegExp(
-        `"Project-Id-Version: ${packageJson.name} ${packageJson.version}\\\\n"`,
-        "m",
-      ),
+      new RegExp(`"Project-Id-Version: ${mockedProjectName}\\\\n"`, "m"),
     );
   }
 });
