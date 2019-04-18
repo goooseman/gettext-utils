@@ -1,27 +1,12 @@
-import { mkdirp, readFile } from "fs-extra";
+import { existsSync, mkdirp, writeFile } from "fs-extra";
+import { po } from "gettext-parser";
 import * as path from "path";
-import { parseGlob } from "react-gettext-parser";
-import { promisify } from "util";
+import { extractMessagesFromGlob, toPot } from "react-gettext-parser";
 import lionessConfig from "./config/lioness.config";
+import { getPoParsed } from "./importStrings";
 import updateTranslations from "./updateTranslations";
-
-const parseGlobPromisified = promisify(parseGlob);
-const encoding = "utf-8";
-
-const getPackageNameAndVersion = async () => {
-  try {
-    const packageJsonPath = path.join(process.cwd(), "package.json");
-    const packageJson = JSON.parse(
-      await readFile(packageJsonPath, encoding),
-    ) as {
-      name?: string;
-      version?: string;
-    };
-    return `${packageJson.name} ${packageJson.version}`;
-  } catch (e) {
-    return false;
-  }
-};
+import arePotsDifferent from "./utils/arePotsDifferent";
+import { getPackageNameAndVersion } from "./utils/packageInfo";
 
 const exportStrings = async (
   inputFilesGlob: string,
@@ -29,19 +14,43 @@ const exportStrings = async (
   defaultLocale?: string,
 ) => {
   const templateDirPath = path.dirname(templateFilePath);
-  const packageName = await getPackageNameAndVersion();
+
   await mkdirp(templateDirPath);
-  await parseGlobPromisified([inputFilesGlob], {
-    output: templateFilePath,
+  const templatePot = await getUpdatedTemplateContents(
+    inputFilesGlob,
+    templateFilePath,
+  );
+  if (!templatePot) {
+    return;
+  }
+  await writeFile(templateFilePath, templatePot, "utf-8");
+  await updateTranslations(templateDirPath, templateFilePath, defaultLocale);
+};
+
+const getUpdatedTemplateContents = async (
+  inputFilesGlob: string,
+  templateFilePath: string,
+): Promise<string | undefined> => {
+  const packageName = await getPackageNameAndVersion();
+  const newMessages = extractMessagesFromGlob([inputFilesGlob], lionessConfig);
+  const newPot = toPot(newMessages, {
     transformHeaders: packageName
       ? (x) => ({
           "Project-Id-Version": packageName,
           ...x,
         })
       : (x) => x,
-    ...lionessConfig,
   });
-  await updateTranslations(templateDirPath, templateFilePath, defaultLocale);
+  const oldTemplateExists = existsSync(templateFilePath);
+  if (!oldTemplateExists) {
+    return newPot;
+  }
+  const oldPotParsed = await getPoParsed(templateFilePath);
+  const newPotParsed = po.parse(newPot);
+  if (!arePotsDifferent(newPotParsed, oldPotParsed)) {
+    return;
+  }
+  return newPot;
 };
 
 export default exportStrings;
