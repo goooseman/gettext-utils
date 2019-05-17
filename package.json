@@ -6,7 +6,7 @@
   "main": "src/main.js",
   "engines": {
     "node": "~10.14.0",
-    "npm": "~6.4.0"
+    "npm": "~6.9.0"
   },
   "scripts": {
     "build": "tsc",
