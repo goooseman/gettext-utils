@@ -6,8 +6,15 @@ const arePotsDifferent = (
 ): boolean => {
   const newTranslations = { ...newPot.translations };
   const oldTranslations = { ...oldPot.translations };
-  delete newTranslations[""];
-  delete oldTranslations[""];
+
+  // We don't want to compare project's metadata
+  if (newTranslations[""]) {
+    delete newTranslations[""][""];
+  }
+  if (oldTranslations[""]) {
+    delete oldTranslations[""][""];
+  }
+
   try {
     assert.deepStrictEqual(newTranslations, oldTranslations);
   } catch (e) {
