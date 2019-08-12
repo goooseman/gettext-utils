@@ -13,7 +13,7 @@ import {
 // tslint:disable no-unused-expression
 yargs
   .command(
-    "export-strings [input-files-glob] [output]",
+    "export-strings [input-files-glob] [output-file-path]",
     "exports translations from  to .pot and .po files",
     (yargsArguments: Argv) => {
       return yargsArguments
@@ -39,7 +39,7 @@ yargs
     },
   )
   .command(
-    "import-strings [po-files-path] [output]",
+    "import-strings [po-files-path] [output-file-path]",
     "generate translations.json from all .po files in the source folder",
     (yargsArguments: Argv) => {
       return yargsArguments
