@@ -232,3 +232,37 @@ msgid_plural \\"Lion has {{ count }} children\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\""
 `;
+
+exports[`Should update translations by --po-files-path: template.pot 1`] = `
+"msgid \\"\\"
+msgstr \\"\\"
+\\"Project-Id-Version: gettext-utils 0.0.0\\\\n\\"
+\\"Content-Type: text/plain; charset=utf-8\\\\n\\"
+\\"POT-Creation-Date: Thu Jan 01 2018 00:00:00\\\\n\\"
+\\"Content-Transfer-Encoding: 8bit\\\\n\\"
+\\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+msgctxt \\"lion.sound\\"
+msgid \\"Rrrrr\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+msgctxt \\"lion.females\\"
+msgid \\"one female lion\\"
+msgid_plural \\"{{ count }} female lions\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+msgctxt \\"lion.title\\"
+msgid \\"Lion\\"
+msgstr \\"\\"
+
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+msgctxt \\"lion.children\\"
+msgid \\"Lion has one child\\"
+msgid_plural \\"Lion has {{ count }} children\\"
+msgstr[0] \\"\\"
+msgstr[1] \\"\\""
+`;
