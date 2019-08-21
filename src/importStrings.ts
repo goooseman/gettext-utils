@@ -20,17 +20,43 @@ export const getTranslations = async (poFilesPath: string) => {
   return translations;
 };
 
+const writeTranslationsByLocale = async (
+  translations: TranslationsMap,
+  outputFilePath: string,
+) => {
+  const extname = path.extname(outputFilePath).replace(".", "");
+  // If file path was passed instead of a folder, then remove it's
+  // extension, create a folder by its path and put translations there
+  const localeOutputPath = extname
+    ? outputFilePath.replace(new RegExp(`(\.${extname})$`, "gi"), "")
+    : outputFilePath;
+  await fse.mkdirp(localeOutputPath);
+
+  for (const locale of Object.keys(translations)) {
+    await fse.writeFile(
+      path.join(localeOutputPath, `./${locale}.json`),
+      JSON.stringify(translations[locale]),
+    );
+  }
+};
+
 const importStrings = async (
   poFilesDirPath: string,
   outputFilePath: string,
   optimize?: boolean,
+  splitByLocale?: boolean,
 ) => {
   const translations = await getTranslations(poFilesDirPath);
   const finalTranslations = optimize
     ? optimizeAllTranslations(translations)
     : translations;
   await fse.mkdirp(path.dirname(outputFilePath));
-  await fse.writeFile(outputFilePath, JSON.stringify(finalTranslations));
+
+  if (splitByLocale) {
+    await writeTranslationsByLocale(finalTranslations, outputFilePath);
+  } else {
+    await fse.writeFile(outputFilePath, JSON.stringify(finalTranslations));
+  }
 };
 
 export default importStrings;

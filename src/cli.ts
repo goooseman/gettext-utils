@@ -26,6 +26,7 @@ yargs
           describe: "Path to output .pot file",
           default: "./src/i18n/template.pot",
         })
+        .string("defaultLocale")
         .array("poFilesPath");
     },
     ({
@@ -59,18 +60,28 @@ yargs
         .positional("outputFilePath", {
           describe: "Path to output .json file",
           default: "./src/i18n/translations.json",
-        });
+        })
+        .boolean("optimize")
+        .default("optimize", true)
+        .boolean("splitByLocale");
     },
     ({
       poFilesPath,
       outputFilePath,
-      optimize = true,
+      optimize,
+      splitByLocale,
     }: {
       poFilesPath: string;
       outputFilePath: string;
       optimize?: boolean;
+      splitByLocale?: boolean;
     }) => {
-      return importStrings(poFilesPath, outputFilePath, optimize);
+      return importStrings(
+        poFilesPath,
+        outputFilePath,
+        optimize,
+        splitByLocale,
+      );
     },
   )
   .command(

@@ -1,5 +1,206 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`allows splitting translations by locales 1`] = `
+Object {
+  "charset": "utf-8",
+  "headers": Object {
+    "content-transfer-encoding": "8bit",
+    "content-type": "text/plain; charset=UTF-8",
+    "language": "en",
+    "language-team": "",
+    "last-translator": "",
+    "mime-version": "1.0",
+    "plural-forms": "nplurals=2; plural=(n != 1);",
+    "po-revision-date": "",
+    "pot-creation-date": "Thu Jan 01 2018 00:00:00",
+    "project-id-version": "",
+    "x-generator": "Poedit 2.2.1",
+  },
+  "translations": Object {
+    "": Object {
+      "": Object {
+        "msgid": "",
+        "msgstr": Array [
+          "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=2; plural=(n != 1);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: en
+",
+        ],
+      },
+    },
+    "lion.females": Object {
+      "one female lion": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+        },
+        "msgctxt": "lion.females",
+        "msgid": "one female lion",
+        "msgid_plural": "{{ count }} female lions",
+        "msgstr": Array [
+          "one female lion",
+          "{{ count }} female lions",
+        ],
+      },
+    },
+    "lion.sound": Object {
+      "Rrrrr": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+        },
+        "msgctxt": "lion.sound",
+        "msgid": "Rrrrr",
+        "msgstr": Array [
+          "Rrrr",
+        ],
+      },
+    },
+  },
+}
+`;
+
+exports[`allows splitting translations by locales 2`] = `
+Object {
+  "charset": "utf-8",
+  "headers": Object {
+    "content-transfer-encoding": "8bit",
+    "content-type": "text/plain; charset=UTF-8",
+    "language": "he",
+    "language-team": "",
+    "last-translator": "",
+    "mime-version": "1.0",
+    "plural-forms": "nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);",
+    "po-revision-date": "",
+    "pot-creation-date": "Thu Jan 01 2018 00:00:00",
+    "project-id-version": "",
+    "x-generator": "Poedit 2.2.1",
+  },
+  "translations": Object {
+    "": Object {
+      "": Object {
+        "msgid": "",
+        "msgstr": Array [
+          "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: he
+",
+        ],
+      },
+    },
+    "lion.females": Object {
+      "one female lion": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+        },
+        "msgctxt": "lion.females",
+        "msgid": "one female lion",
+        "msgid_plural": "{{ count }} female lions",
+        "msgstr": Array [
+          "לביאה",
+          "שתי לביאה",
+          "‫{{count}} לביאות",
+          "‏‫{{count}} לביא",
+        ],
+      },
+    },
+    "lion.sound": Object {
+      "Rrrrr": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+        },
+        "msgctxt": "lion.sound",
+        "msgid": "Rrrrr",
+        "msgstr": Array [
+          "רררר",
+        ],
+      },
+    },
+  },
+}
+`;
+
+exports[`allows splitting translations by locales 3`] = `
+Object {
+  "charset": "utf-8",
+  "headers": Object {
+    "content-transfer-encoding": "8bit",
+    "content-type": "text/plain; charset=UTF-8",
+    "language": "ru",
+    "language-team": "",
+    "last-translator": "",
+    "mime-version": "1.0",
+    "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);",
+    "po-revision-date": "",
+    "pot-creation-date": "Thu Jan 01 2018 00:00:00",
+    "project-id-version": "",
+    "x-generator": "Poedit 2.2.1",
+  },
+  "translations": Object {
+    "": Object {
+      "": Object {
+        "msgid": "",
+        "msgstr": Array [
+          "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: ru
+",
+        ],
+      },
+    },
+    "lion.females": Object {
+      "one female lion": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+        },
+        "msgctxt": "lion.females",
+        "msgid": "one female lion",
+        "msgid_plural": "{{ count }} female lions",
+        "msgstr": Array [
+          "одна львица",
+          "{{ сount }} львицы",
+          "{{ count }} львиц",
+        ],
+      },
+    },
+    "lion.sound": Object {
+      "Rrrrr": Object {
+        "comments": Object {
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+        },
+        "msgctxt": "lion.sound",
+        "msgid": "Rrrrr",
+        "msgstr": Array [
+          "Ррррр",
+        ],
+      },
+    },
+  },
+}
+`;
+
 exports[`can optimize translations if boolean flag is passed 1`] = `
 Object {
   "en": Object {

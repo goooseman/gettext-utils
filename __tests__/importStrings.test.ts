@@ -35,3 +35,26 @@ it("can optimize translations if boolean flag is passed", async () => {
   expect(message).not.toHaveProperty("msgid");
   expect(message).not.toHaveProperty("comments");
 });
+
+it("allows splitting translations by locales", async () => {
+  const tmpPath = await getTmpPath();
+  const translationsPath = path.join(tmpPath, "translations");
+  await importStrings("__fixtures__/po", translationsPath, false, true);
+
+  const enJson = JSON.parse(
+    fse.readFileSync(path.join(translationsPath, "./en.json"), "utf-8"),
+  ) as Translation;
+  const heJson = JSON.parse(
+    fse.readFileSync(path.join(translationsPath, "./he.json"), "utf-8"),
+  ) as Translation;
+  const ruJson = JSON.parse(
+    fse.readFileSync(path.join(translationsPath, "./ru.json"), "utf-8"),
+  ) as Translation;
+
+  expect(enJson).toMatchSnapshot();
+  expect(heJson).toMatchSnapshot();
+  expect(ruJson).toMatchSnapshot();
+  expect(enJson.translations).toBeTruthy();
+  expect(heJson.translations).toBeTruthy();
+  expect(ruJson.translations).toBeTruthy();
+});
