@@ -1,5 +1,195 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`can optimize translations if boolean flag is passed 1`] = `
+Object {
+  "en": Object {
+    "headers": Object {
+      "plural-forms": "nplurals=2; plural=(n != 1);",
+    },
+    "translations": Object {
+      "": Object {
+        "": Object {
+          "msgstr": Array [
+            "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=2; plural=(n != 1);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: en
+",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "msgctxt": "lion.females",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "one female lion",
+            "{{ count }} female lions",
+          ],
+        },
+      },
+      "lion.sound": Object {
+        "Rrrrr": Object {
+          "msgctxt": "lion.sound",
+          "msgstr": Array [
+            "Rrrr",
+          ],
+        },
+      },
+    },
+  },
+  "fr": Object {
+    "headers": Object {
+      "plural-forms": "nplurals=2; plural=(n > 1);",
+    },
+    "translations": Object {
+      "": Object {
+        "": Object {
+          "msgstr": Array [
+            "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=2; plural=(n > 1);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: fr
+",
+          ],
+        },
+      },
+      "fake": Object {
+        "should be deleted": Object {
+          "msgctxt": "fake",
+          "msgid_plural": "Delete me {{ count }} times",
+          "msgstr": Array [
+            "Delete me",
+            "Delete me {{ count }} times",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "msgctxt": "lion.females",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "lionne",
+            "{{ count }} lionnes",
+          ],
+        },
+      },
+      "lion.sound": Object {
+        "Rrrrr": Object {
+          "msgctxt": "lion.sound",
+          "msgstr": Array [
+            "Oooo",
+          ],
+        },
+      },
+    },
+  },
+  "he": Object {
+    "headers": Object {
+      "plural-forms": "nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);",
+    },
+    "translations": Object {
+      "": Object {
+        "": Object {
+          "msgstr": Array [
+            "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? 2 : 3);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: he
+",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "msgctxt": "lion.females",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "לביאה",
+            "שתי לביאה",
+            "‫{{count}} לביאות",
+            "‏‫{{count}} לביא",
+          ],
+        },
+      },
+      "lion.sound": Object {
+        "Rrrrr": Object {
+          "msgctxt": "lion.sound",
+          "msgstr": Array [
+            "רררר",
+          ],
+        },
+      },
+    },
+  },
+  "ru": Object {
+    "headers": Object {
+      "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);",
+    },
+    "translations": Object {
+      "": Object {
+        "": Object {
+          "msgstr": Array [
+            "Content-Type: text/plain; charset=UTF-8
+POT-Creation-Date: Thu Jan 01 2018 00:00:00
+Content-Transfer-Encoding: 8bit
+Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);
+Project-Id-Version: 
+PO-Revision-Date: 
+Language-Team: 
+MIME-Version: 1.0
+X-Generator: Poedit 2.2.1
+Last-Translator: 
+Language: ru
+",
+          ],
+        },
+      },
+      "lion.females": Object {
+        "one female lion": Object {
+          "msgctxt": "lion.females",
+          "msgid_plural": "{{ count }} female lions",
+          "msgstr": Array [
+            "одна львица",
+            "{{ сount }} львицы",
+            "{{ count }} львиц",
+          ],
+        },
+      },
+      "lion.sound": Object {
+        "Rrrrr": Object {
+          "msgctxt": "lion.sound",
+          "msgstr": Array [
+            "Ррррр",
+          ],
+        },
+      },
+    },
+  },
+}
+`;
+
 exports[`should generate node-gettext .json files from .po files 1`] = `
 Object {
   "en": Object {

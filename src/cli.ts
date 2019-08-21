@@ -55,11 +55,13 @@ yargs
     ({
       poFilesPath,
       outputFilePath,
+      optimize = true,
     }: {
       poFilesPath: string;
       outputFilePath: string;
+      optimize?: boolean;
     }) => {
-      return importStrings(poFilesPath, outputFilePath);
+      return importStrings(poFilesPath, outputFilePath, optimize);
     },
   )
   .command(
