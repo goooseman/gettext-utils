@@ -76,6 +76,33 @@ it("Should update .po files with new translations", async () => {
   }
 });
 
+it("Should update translations by --po-files-path", async () => {
+  const tmpPath = await getTmpPath();
+  const filePath = path.join(tmpPath, templateName);
+  await fse.createFile(filePath);
+
+  // Reset po files before testing that they are actually updated
+  const poHeader = await fse.readFile("__fixtures__/en.header.po", encoding);
+  const poPaths = ["__fixtures__/poPath1", "__fixtures__/poPath2"];
+  await fse.writeFile(`${poPaths[0]}/en.po`, poHeader);
+  await fse.writeFile(`${poPaths[1]}/en.po`, poHeader);
+
+  await exportStrings(
+    "__fixtures__/react-project/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+    filePath,
+    "en",
+    poPaths,
+  );
+  const templatePot = await fse.readFile(filePath, encoding);
+  expect(templatePot).toMatchSnapshot(templateName);
+  expect(templatePot).toMatch(/msgctxt "lion\.females"/);
+
+  const po1 = await fse.readFile(`${poPaths[0]}/en.po`, encoding);
+  const po2 = await fse.readFile(`${poPaths[1]}/en.po`, encoding);
+  expect(po1).toMatch(/msgctxt "lion\.females"/);
+  expect(po2).toMatch(/msgctxt "lion\.females"/);
+});
+
 it("Should generate Project-Id-Version header", async () => {
   const tmpPath = await getTmpPath();
   const filePath = path.join(tmpPath, templateName);

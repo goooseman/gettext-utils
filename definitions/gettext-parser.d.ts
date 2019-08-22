@@ -1,22 +1,41 @@
+interface TranslationMessage {
+  msgid?: string;
+  msgid_plural?: string;
+  msgctxt?: string;
+  msgstr?: string[];
+  comments?: {
+    reference: string;
+  };
+}
+
+interface TranslationHeaders {
+  "project-id-version"?: string;
+  "content-type"?: string;
+  "pot-creation-date"?: string;
+  "content-transfer-encoding"?: string;
+  "plural-forms"?: string;
+  "po-revision-date"?: string;
+  "language-team"?: string;
+  "mime-version"?: string;
+  "x-generator"?: string;
+  "last-translator"?: string;
+  language?: string;
+}
+
+interface TranslationContext {
+  [msgid: string]: TranslationMessage;
+}
+
 interface Translation {
-  charset: Object;
-  headers: {
-    "plural-forms": string;
-    [key: string]: string;
-  };
+  charset?: string;
+  headers: TranslationHeaders;
   translations: {
-    [key: string]: {
-      [key: string]: {
-        msgid: string;
-        msgid_plural?: string;
-        msgctxt?: string;
-        msgstr?: string[];
-        comments?: {
-          reference: string;
-        };
-      };
-    };
+    [msgctxt: string]: TranslationContext;
   };
+}
+
+interface TranslationsMap {
+  [locale: string]: Translation;
 }
 
 declare module "gettext-parser" {

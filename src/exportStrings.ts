@@ -12,6 +12,7 @@ const exportStrings = async (
   inputFilesGlob: string,
   templateFilePath: string,
   defaultLocale?: string,
+  poFilesPath?: string[],
 ) => {
   const templateDirPath = path.dirname(templateFilePath);
 
@@ -24,6 +25,11 @@ const exportStrings = async (
     return;
   }
   await writeFile(templateFilePath, templatePot, "utf-8");
+  if (poFilesPath) {
+    for (const poPath of poFilesPath) {
+      await updateTranslations(poPath, templateFilePath, defaultLocale);
+    }
+  }
   await updateTranslations(templateDirPath, templateFilePath, defaultLocale);
 };
 
