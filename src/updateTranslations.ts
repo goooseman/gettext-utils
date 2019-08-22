@@ -46,7 +46,7 @@ export const mergeTranslations = (
           ? localeTranslations[context][id].msgstr
           : templateTranslations[context][id].msgstr;
       } else {
-        resultTranslation.msgstr = [resultTranslation.msgid];
+        resultTranslation.msgstr = [resultTranslation.msgid as string];
         if (resultTranslation.msgid_plural) {
           resultTranslation.msgstr.push(resultTranslation.msgid_plural);
         }

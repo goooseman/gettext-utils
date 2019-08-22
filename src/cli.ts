@@ -15,6 +15,7 @@ yargs
   .command(
     "export-strings [input-files-glob] [output-file-path]",
     "exports translations from  to .pot and .po files",
+    // @ts-ignore
     (yargsArguments: Argv) => {
       return yargsArguments
         .positional("inputFilesGlob", {
@@ -24,18 +25,27 @@ yargs
         .positional("outputFilePath", {
           describe: "Path to output .pot file",
           default: "./src/i18n/template.pot",
-        });
+        })
+        .string("defaultLocale")
+        .array("poFilesPath");
     },
     ({
       inputFilesGlob,
       outputFilePath,
       defaultLocale,
+      poFilesPath,
     }: {
       inputFilesGlob: string;
       outputFilePath: string;
       defaultLocale?: string;
+      poFilesPath?: string[];
     }) => {
-      return exportStrings(inputFilesGlob, outputFilePath, defaultLocale);
+      return exportStrings(
+        inputFilesGlob,
+        outputFilePath,
+        defaultLocale,
+        poFilesPath,
+      );
     },
   )
   .command(
@@ -50,16 +60,28 @@ yargs
         .positional("outputFilePath", {
           describe: "Path to output .json file",
           default: "./src/i18n/translations.json",
-        });
+        })
+        .boolean("optimize")
+        .default("optimize", true)
+        .boolean("splitByLocale");
     },
     ({
       poFilesPath,
       outputFilePath,
+      optimize,
+      splitByLocale,
     }: {
       poFilesPath: string;
       outputFilePath: string;
+      optimize?: boolean;
+      splitByLocale?: boolean;
     }) => {
-      return importStrings(poFilesPath, outputFilePath);
+      return importStrings(
+        poFilesPath,
+        outputFilePath,
+        optimize,
+        splitByLocale,
+      );
     },
   )
   .command(

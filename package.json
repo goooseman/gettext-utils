@@ -1,6 +1,6 @@
 {
   "name": "gettext-utils",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A set of utils to parse react files and export .po files and import them back",
   "bin": "src/cli.js",
   "main": "src/main.js",
