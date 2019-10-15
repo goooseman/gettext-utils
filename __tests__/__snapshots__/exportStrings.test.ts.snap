@@ -9,24 +9,24 @@ msgstr \\"\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -43,24 +43,24 @@ msgstr \\"\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -83,24 +83,24 @@ msgstr \\"\\"
 \\"Last-Translator: \\\\n\\"
 \\"Language: en\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"Rrrr\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
 msgstr[0] \\"one female lion\\"
 msgstr[1] \\"{{ count }} female lions\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -123,24 +123,24 @@ msgstr \\"\\"
 \\"Last-Translator: \\\\n\\"
 \\"Language: fr\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"Oooo\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
 msgstr[0] \\"lionne\\"
 msgstr[1] \\"{{ count }} lionnes\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -164,12 +164,12 @@ msgstr \\"\\"
 \\"Last-Translator: \\\\n\\"
 \\"Language: he\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"רררר\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
@@ -178,12 +178,12 @@ msgstr[1] \\"שתי לביאה\\"
 msgstr[2] \\"‫{{count}} לביאות\\"
 msgstr[3] \\"‏‫{{count}} לביא\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -207,12 +207,12 @@ msgstr \\"\\"
 \\"Last-Translator: \\\\n\\"
 \\"Language: ru\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"Ррррр\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
@@ -220,12 +220,12 @@ msgstr[0] \\"одна львица\\"
 msgstr[1] \\"{{ сount }} львицы\\"
 msgstr[2] \\"{{ count }} львиц\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
@@ -242,24 +242,24 @@ msgstr \\"\\"
 \\"Content-Transfer-Encoding: 8bit\\\\n\\"
 \\"Plural-Forms: nplurals=2; plural=(n != 1);\\\\n\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:19
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.sound\\"
 msgid \\"Rrrrr\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:23
+#: __fixtures__/react-project/src/components/LionessHocComponent.tsx:
 msgctxt \\"lion.females\\"
 msgid \\"one female lion\\"
 msgid_plural \\"{{ count }} female lions\\"
 msgstr[0] \\"\\"
 msgstr[1] \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:22
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.title\\"
 msgid \\"Lion\\"
 msgstr \\"\\"
 
-#: __fixtures__/react-project/src/components/LionessTComponent.jsx:23
+#: __fixtures__/react-project/src/components/LionessTComponent.jsx:
 msgctxt \\"lion.children\\"
 msgid \\"Lion has one child\\"
 msgid_plural \\"Lion has {{ count }} children\\"
