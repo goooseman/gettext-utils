@@ -7,6 +7,7 @@ import lionessConfig from "./config/lioness.config";
 import { getPoParsed } from "./importStrings";
 import updateTranslations from "./updateTranslations";
 import arePotsDifferent from "./utils/arePotsDifferent";
+import { compileToPot } from "./utils/compileToPot";
 import { optimizeMessageForGit } from "./utils/optimizeForGit";
 import { getPackageNameAndVersion } from "./utils/packageInfo";
 
@@ -54,15 +55,15 @@ const getUpdatedTemplateContents = async (
       : (x) => x,
   });
   const oldTemplateExists = existsSync(templateFilePath);
+  const newPotParsed = po.parse(newPot);
   if (!oldTemplateExists) {
-    return newPot;
+    return compileToPot(newPotParsed);
   }
   const oldPotParsed = await getPoParsed(templateFilePath);
-  const newPotParsed = po.parse(newPot);
   if (!arePotsDifferent(newPotParsed, oldPotParsed)) {
     return;
   }
-  return newPot;
+  return compileToPot(newPotParsed);
 };
 
 export default exportStrings;
