@@ -78,11 +78,11 @@ export const mergePotContents = (
   const localePoParsed = po.parse(localePo);
 
   const resultParsed: Translation = {
-    charset: templatePotParsed.charset,
+    charset: localePoParsed.charset || templatePotParsed.charset,
     headers: {
-      ...localePoParsed.headers,
       ...templatePotParsed.headers,
-      "plural-forms": localePoParsed.headers["plural-forms"],
+      ...localePoParsed.headers,
+      "project-id-version": templatePotParsed.headers["project-id-version"],
     },
     translations: mergeTranslations(
       templatePotParsed.translations,

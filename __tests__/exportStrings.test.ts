@@ -3,7 +3,9 @@ import { getTmpPath } from "__helpers__/fs";
 import * as fse from "fs-extra";
 import * as path from "path";
 
-jest.mock("../src/utils/packageInfo");
+jest.mock("@src/utils/packageInfo");
+
+import { getPackageNameAndVersion } from "@src/utils/packageInfo";
 
 const mockedProjectName = "gettext-utils 0.0.0";
 
@@ -183,6 +185,7 @@ describe("diffs", () => {
   beforeEach(async () => {
     tmpPath = await getTmpPath();
     filePath = path.join(tmpPath, templateName);
+    await fse.remove(filePath);
     componentPath = path.join(
       __dirname,
       "../__fixtures__/diffTest/src/components/LionessHocComponent.tsx",
@@ -216,5 +219,58 @@ describe("diffs", () => {
 
     const result2 = await fse.readFile(filePath, encoding);
     expect(result2).toEqual(result1);
+  });
+
+  it("Should preserve translation headers except for Project-Id-Version on update", async () => {
+    // Create ru.po so that exportStrings updates it with template contents
+    const ruPoPath = path.join(tmpPath, "ru.po");
+    await fse.ensureFile(ruPoPath);
+    await fse.writeFile(ruPoPath, "");
+    await exportStrings(
+      "__fixtures__/diffTest/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+      filePath,
+    );
+
+    const result1 = await fse.readFile(filePath, encoding);
+    expect(result1).toMatch("Project-Id-Version: gettext-utils 0.0.0");
+    // Simulate updating project's version
+    (getPackageNameAndVersion as jest.Mock).mockResolvedValueOnce(
+      "gettext-utils 1.2.3",
+    );
+
+    // Simulate updating message in component
+    const componentAfter = componentBefore.replace(
+      `80 chars long string: asdasdasd asdasda asdasd asd a sdas dasd asd asda dsasd fu`,
+      `Template and po files should be updated after this change`,
+    );
+    await fse.writeFile(componentPath, componentAfter);
+
+    // Simulate updating ru.po from weblate
+    const ruPo = await fse.readFile(ruPoPath, encoding);
+    const ruPoWeblated = ruPo.replace(
+      `"Project-Id-Version: gettext-utils 0.0.0\\n"`,
+      `"Project-Id-Version: gettext-utils 0.0.0\\n"
+"Last-Translator: Olesea Mereacle <olesea.mereacle@trucknet.io>\\n"
+"PO-Revision-Date: 2019-10-15 13:13+0000\\n"
+"X-Generator: Weblate 3.7.1\\n"`,
+    );
+    await fse.writeFile(ruPoPath, ruPoWeblated);
+
+    await exportStrings(
+      "__fixtures__/diffTest/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+      filePath,
+    );
+
+    const result2 = await fse.readFile(filePath, encoding);
+    const ruPo2 = await fse.readFile(ruPoPath, encoding);
+
+    expect(result2).toMatch("Project-Id-Version: gettext-utils 1.2.3");
+
+    expect(ruPo2).toMatch("Project-Id-Version: gettext-utils 1.2.3");
+    expect(ruPo2).toMatch(
+      "Last-Translator: Olesea Mereacle <olesea.mereacle@trucknet.io>",
+    );
+    expect(ruPo2).toMatch("PO-Revision-Date: 2019-10-15 13:13+0000");
+    expect(ruPo2).toMatch("X-Generator: Weblate 3.7.1");
   });
 });
