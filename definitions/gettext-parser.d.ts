@@ -42,7 +42,10 @@ declare module "gettext-parser" {
   const def: {
     po: {
       parse(fileContents: string | Buffer): Translation;
-      compile(translation: Translation): Buffer;
+      compile(
+        translation: Translation,
+        options?: { foldLength?: number; sort?: boolean | (() => number) },
+      ): Buffer;
     };
   };
   export = def;

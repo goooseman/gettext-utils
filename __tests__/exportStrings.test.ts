@@ -173,3 +173,48 @@ it("Should update all files if there are new translations", async () => {
   expect(secondResult).not.toBe(firstResult);
   expect(secondResult).toMatch(`msgctxt "lion.title-two"`);
 });
+
+describe("diffs", () => {
+  let tmpPath: string;
+  let filePath: string;
+  let componentPath: string;
+  let componentBefore: string;
+
+  beforeEach(async () => {
+    tmpPath = await getTmpPath();
+    filePath = path.join(tmpPath, templateName);
+    componentPath = path.join(
+      __dirname,
+      "../__fixtures__/diffTest/src/components/LionessHocComponent.tsx",
+    );
+    componentBefore = await fse.readFile(componentPath, encoding);
+  });
+
+  afterEach(async () => {
+    await fse.writeFile(componentPath, componentBefore);
+  });
+
+  it("Should not update any files if only line/column number changed", async () => {
+    await exportStrings(
+      "__fixtures__/diffTest/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+      filePath,
+    );
+
+    const result1 = await fse.readFile(filePath, encoding);
+    expect(result1).toMatchSnapshot();
+
+    const componentAfter = componentBefore.replace(
+      `    this.props.tp(`,
+      `console.log("Adding line doesn't affect anything!");\n    this.props.tp(`,
+    );
+    await fse.writeFile(componentPath, componentAfter);
+
+    await exportStrings(
+      "__fixtures__/diffTest/src/**/{*.ts,*.tsx,*.js,*.jsx}",
+      filePath,
+    );
+
+    const result2 = await fse.readFile(filePath, encoding);
+    expect(result2).toEqual(result1);
+  });
+});

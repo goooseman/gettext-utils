@@ -3,6 +3,8 @@ import { po } from "gettext-parser";
 import * as glob from "glob";
 import * as path from "path";
 
+import { compileToPot } from "./utils/compileToPot";
+
 const encoding = "utf-8";
 
 const updateTranslationsByPath = async (
@@ -89,7 +91,7 @@ export const mergePotContents = (
     ),
   };
 
-  return po.compile(resultParsed).toString();
+  return compileToPot(resultParsed);
 };
 
 export const isDefaultLocale = (localePath: string, locale?: string) => {
