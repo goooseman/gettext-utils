@@ -2,10 +2,13 @@ import { existsSync, mkdirp, writeFile } from "fs-extra";
 import { po } from "gettext-parser";
 import * as path from "path";
 import { extractMessagesFromGlob, toPot } from "react-gettext-parser";
+
 import lionessConfig from "./config/lioness.config";
 import { getPoParsed } from "./importStrings";
 import updateTranslations from "./updateTranslations";
 import arePotsDifferent from "./utils/arePotsDifferent";
+import { compileToPot } from "./utils/compileToPot";
+import { optimizeMessageForGit } from "./utils/optimizeForGit";
 import { getPackageNameAndVersion } from "./utils/packageInfo";
 
 const exportStrings = async (
@@ -38,7 +41,11 @@ const getUpdatedTemplateContents = async (
   templateFilePath: string,
 ): Promise<string | undefined> => {
   const packageName = await getPackageNameAndVersion();
-  const newMessages = extractMessagesFromGlob([inputFilesGlob], lionessConfig);
+  const newMessages = extractMessagesFromGlob(
+    [inputFilesGlob],
+    lionessConfig,
+  ).map(optimizeMessageForGit);
+
   const newPot = toPot(newMessages, {
     transformHeaders: packageName
       ? (x) => ({
@@ -48,15 +55,15 @@ const getUpdatedTemplateContents = async (
       : (x) => x,
   });
   const oldTemplateExists = existsSync(templateFilePath);
+  const newPotParsed = po.parse(newPot);
   if (!oldTemplateExists) {
-    return newPot;
+    return compileToPot(newPotParsed);
   }
   const oldPotParsed = await getPoParsed(templateFilePath);
-  const newPotParsed = po.parse(newPot);
   if (!arePotsDifferent(newPotParsed, oldPotParsed)) {
     return;
   }
-  return newPot;
+  return compileToPot(newPotParsed);
 };
 
 export default exportStrings;

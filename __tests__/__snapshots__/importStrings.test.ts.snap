@@ -39,7 +39,7 @@ Language: en
     "lion.females": Object {
       "one female lion": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.females",
         "msgid": "one female lion",
@@ -53,7 +53,7 @@ Language: en
     "lion.sound": Object {
       "Rrrrr": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.sound",
         "msgid": "Rrrrr",
@@ -105,7 +105,7 @@ Language: he
     "lion.females": Object {
       "one female lion": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.females",
         "msgid": "one female lion",
@@ -121,7 +121,7 @@ Language: he
     "lion.sound": Object {
       "Rrrrr": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.sound",
         "msgid": "Rrrrr",
@@ -173,7 +173,7 @@ Language: ru
     "lion.females": Object {
       "one female lion": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.females",
         "msgid": "one female lion",
@@ -188,7 +188,7 @@ Language: ru
     "lion.sound": Object {
       "Rrrrr": Object {
         "comments": Object {
-          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+          "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
         },
         "msgctxt": "lion.sound",
         "msgid": "Rrrrr",
@@ -431,7 +431,7 @@ Language: en
       "lion.females": Object {
         "one female lion": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.females",
           "msgid": "one female lion",
@@ -445,7 +445,7 @@ Language: en
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.sound",
           "msgid": "Rrrrr",
@@ -508,7 +508,7 @@ Language: fr
       "lion.females": Object {
         "one female lion": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.females",
           "msgid": "one female lion",
@@ -522,7 +522,7 @@ Language: fr
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.sound",
           "msgid": "Rrrrr",
@@ -571,7 +571,7 @@ Language: he
       "lion.females": Object {
         "one female lion": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.females",
           "msgid": "one female lion",
@@ -587,7 +587,7 @@ Language: he
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.sound",
           "msgid": "Rrrrr",
@@ -636,7 +636,7 @@ Language: ru
       "lion.females": Object {
         "one female lion": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:23",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.females",
           "msgid": "one female lion",
@@ -651,7 +651,7 @@ Language: ru
       "lion.sound": Object {
         "Rrrrr": Object {
           "comments": Object {
-            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:19",
+            "reference": "__fixtures__/react-project/src/components/LionessHocComponent.tsx:",
           },
           "msgctxt": "lion.sound",
           "msgid": "Rrrrr",

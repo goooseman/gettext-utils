@@ -3,6 +3,8 @@ import { po } from "gettext-parser";
 import * as glob from "glob";
 import * as path from "path";
 
+import { compileToPot } from "./utils/compileToPot";
+
 const encoding = "utf-8";
 
 const updateTranslationsByPath = async (
@@ -76,11 +78,11 @@ export const mergePotContents = (
   const localePoParsed = po.parse(localePo);
 
   const resultParsed: Translation = {
-    charset: templatePotParsed.charset,
+    charset: localePoParsed.charset || templatePotParsed.charset,
     headers: {
-      ...localePoParsed.headers,
       ...templatePotParsed.headers,
-      "plural-forms": localePoParsed.headers["plural-forms"],
+      ...localePoParsed.headers,
+      "project-id-version": templatePotParsed.headers["project-id-version"],
     },
     translations: mergeTranslations(
       templatePotParsed.translations,
@@ -89,7 +91,7 @@ export const mergePotContents = (
     ),
   };
 
-  return po.compile(resultParsed).toString();
+  return compileToPot(resultParsed);
 };
 
 export const isDefaultLocale = (localePath: string, locale?: string) => {

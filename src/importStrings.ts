@@ -3,11 +3,13 @@ import { po } from "gettext-parser";
 import * as glob from "glob";
 import * as path from "path";
 
+import { optimizePotForGit } from "./utils/optimizeForGit";
 import { optimizeAllTranslations } from "./utils/optimizeTranslations";
 
 export const getPoParsed = async (pathToPo: string) => {
   const file = await fse.readFile(pathToPo);
-  return po.parse(file.toString());
+  const parsedPot = po.parse(file.toString());
+  return optimizePotForGit(parsedPot);
 };
 
 export const getTranslations = async (poFilesPath: string) => {
