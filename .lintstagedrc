@@ -1,18 +1,16 @@
 {
-  "linters": {
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts": [
-      "tslint --fix",
-      "prettier --write",
-      "git add"
-    ],
-    "*.tsx": [
-      "tslint --fix",
-      "prettier --write",
-      "git add"
-    ]
-  }
+  "*.json": [
+    "prettier --write",
+    "git add"
+  ],
+  "*.ts": [
+    "tslint --fix",
+    "prettier --write",
+    "git add"
+  ],
+  "*.tsx": [
+    "tslint --fix",
+    "prettier --write",
+    "git add"
+  ]
 }
