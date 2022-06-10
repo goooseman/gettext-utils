@@ -53,7 +53,7 @@
     "concurrently": "^4.1.0",
     "coveralls": "^3.0.3",
     "jest": "^24.5.0",
-    "lioness": "^0.2.13",
+    "lioness": "^0.2.19",
     "nodemon": "^1.18.10",
     "prettier-config-trucknet-io": "^2.0.1",
     "react": "^16.8.4",
