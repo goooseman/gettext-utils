@@ -8,8 +8,11 @@ const areTranslationsComplete = async (
 ) => {
   const translations = await getTranslations(poFilesDirPath);
   const template = await getPoParsed(templateFilePath);
-
-  for (const translationKey of Object.keys(template.translations)) {
+  // quoted from gettext-parser:
+  // Translations can be found from the translations object
+  // which in turn holds context objects for msgctxt.
+  // Default context can be found from translations[""].
+  for (const translationKey of Object.keys(template.translations[""])) {
     const locales = Object.keys(translations);
     for (const locale of locales) {
       if (!translations[locale].translations[translationKey]) {
